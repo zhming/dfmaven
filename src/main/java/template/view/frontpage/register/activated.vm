@@ -1,0 +1,50 @@
+<html><head>
+<title>BOFramework</title>
+	
+</head>
+<link href="style.css" rel="stylesheet" type="text/css"/>
+<body bgcolor="white">
+<div style="position: absolute; left: 150px; top: 50px;">
+           <table border=0 cellpadding=0 cellspacing=5 width="512">
+	          <tr> 
+	            <td colspan=2><img border=0 
+	            src="#surl("value=$!logo" "includeParams=false")" ></td>
+	          </tr>
+	          <tr> 
+	            <td colspan=2></td>
+	
+	          </tr>
+	        </table>
+<div>
+<br>
+<span style="font-weight: bold;">Login Information</span><br>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td width="25%">
+    <p style="margin-top: 0; margin-bottom: 0">&nbsp;</td>
+    <td width="41%">
+    Your Account has been activated.<br>
+    
+    
+    </td>
+    <td width="34%">
+    <p style="margin-top: 0; margin-bottom: 0">&nbsp;</td>
+  </tr>
+</table>
+ 	 <table style="text-align: left; width: 100%;" cellpadding="3" cellspacing="1">
+    <tbody>
+      <tr> 
+	            <td></td>
+	            <td class=copyright-text>&nbsp;</td>
+	          </tr>
+	          <tr> 
+	            <td colspan="2">Copyright &copy; 2014-2015, <b>Fachiem Technology</b></td>
+	          </tr>
+      </tbody>
+  </table>
+  </div>
+  <br>
+  
+</form>
+
+</div>

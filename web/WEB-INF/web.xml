@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0" metadata-complete="true">
+
+	<display-name>boframework</display-name>
+	<description>BOFramework Web App</description>
+	<!--=========================== SPRING ============================= -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext*.xml</param-value>
+	</context-param>
+
+	<!--=========================== CONFIG ============================= -->
+	<!-- bo config begin -->
+	<context-param>
+		<param-name>global_config</param-name>
+		<param-value>/WEB-INF/classes/conf.properties</param-value>
+	</context-param>
+	<context-param>
+		<param-name>support_config</param-name>
+		<param-value>/WEB-INF/classes/conf.properties</param-value>
+	</context-param>
+
+	<!-- bo config end -->
+
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+	</filter>
+
+
+
+    <filter>
+        <filter-name>container</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+    </filter>
+
+	<filter>
+		<filter-name>security</filter-name>
+		<filter-class>com.gihow.security.session.SecurityFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>login</filter-name>
+		<filter-class>com.gihow.security.login.LoginFilter</filter-class>
+
+		<init-param>
+			<param-name>loginPage</param-name>
+			<param-value>/backend/user/index.action</param-value>
+		</init-param>
+		<init-param>
+			<param-name>siteSelection</param-name>
+			<param-value>/backend/user/site.action</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>loginAction</param-name>
+			<param-value>/backend/user/index.action</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ignoreExtensions</param-name>
+			<param-value>jpeg, gif, css</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>login</filter-name>
+		<url-pattern>/module/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>login</filter-name>
+		<url-pattern>/user/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+    <filter-mapping>
+        <filter-name>security</filter-name>
+        <url-pattern>/cc/*</url-pattern>
+    </filter-mapping>
+
+	<filter-mapping>
+		<filter-name>container</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Error 500 Handler >
+	<error-page>
+		<error-code>500</error-code>
+		<location>/errors/500.jsp</location>
+	</error-page-->
+	<!--<error-page>-->
+		<!--<error-code>404</error-code>-->
+		<!--<location>/errors/404.jsp</location>-->
+	<!--</error-page>-->
+
+
+	<!-- SPRING -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- SPRING -->
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<jsp-config>
+		<taglib>
+			<taglib-uri>sitemesh-page</taglib-uri>
+			<taglib-location>/WEB-INF/tld/sitemesh-page.tld</taglib-location>
+		</taglib>
+
+		<taglib>
+			<taglib-uri>sitemesh-decorator</taglib-uri>
+			<taglib-location>/WEB-INF/tld/sitemesh-decorator.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+</web-app>

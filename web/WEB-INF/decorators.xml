@@ -1,0 +1,20 @@
+<decorators defaultdir="/decorators">
+
+	<decorator name="main" page="boframework.jsp">
+		<pattern>/frontpage/descriptor/*</pattern>
+		<pattern>/frontpage/role/*</pattern>
+		<pattern>/frontpage/site/*</pattern>
+		<pattern>/frontpage/module/*</pattern>
+	</decorator>
+	<decorator name="none">
+		<pattern>/module/descriptor/*</pattern>
+		<pattern>/module/role/*</pattern>
+		<pattern>/module/site/*</pattern>
+		<pattern>/module/module_function/*</pattern>
+	</decorator>
+	<decorator name="popUp" page="popUp.jsp">
+		<pattern>/frontpage/module/listModuleDescriptor.action</pattern>
+		<pattern>/frontpage/module/listThreadNumber.action</pattern>
+		<pattern>/frontpage/module/listModulePrivilage.action</pattern>
+	</decorator>
+</decorators>
