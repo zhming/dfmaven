@@ -30,6 +30,8 @@ public class LoginForm extends DefaultAction implements UserAccessorAware {
 
 	public String execute() throws DfException {
         System.out.println("LoginForm.............");
+        System.out.println("username: " + username);
+        System.out.println("password: " + password);
     	if(getRedirectUri()!=null&&!"".equalsIgnoreCase(getRedirectUri().trim())){
     		try {
 				getResponse().sendRedirect("../../");

@@ -8,6 +8,8 @@ public class Login extends LoginForm implements UserAccessorAware {
     
     public String execute() throws DfException{
         System.out.println("login ..............................");
+        System.out.println("getPassword .............................." + getPassword());
+        System.out.println("getUsername .............................." + getUsername());
     	if (ua.authenticate(getUsername(), getPassword())) {
     		setUser(ua.getByUsername(getUsername()));
     		if(getUser().getACLName().equalsIgnoreCase("default")){
@@ -20,10 +22,25 @@ public class Login extends LoginForm implements UserAccessorAware {
 	            return SUCCESS;
     		}
         } else {
+            System.out.println("addFieldError .............................." );
             addFieldError("username", "Invalid username or password.");
             return INPUT;
         }
+
     }
 
-    
+    @Override
+    public void validate() {
+        System.out.print("validate...............");
+        if(getUsername() == null || getUsername().equals("")){
+            addFieldError("userName", "Username can't be blank");
+        }
+        if(getPassword() == null || getPassword().equals("")){
+            addFieldError("password", "Password Can't be blank");
+        }else{
+                addActionMessage("Welcome " + getUsername() + ", You have been Successfully Logged in");
+        }
+
+
+    }
 }
