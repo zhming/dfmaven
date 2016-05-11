@@ -22,5 +22,15 @@ public class Trace {
         Logger.getLogger(obj.getClass()).debug(msg);
     }
 
+    public static void error(Object obj, String strMessage, Throwable t)
+    {
+        String strPlainMessage = strMessage.replace('{', '[').replace('}', ']');
+        DfLogger.error(obj, strPlainMessage, null, t);
+    }
 
+    public static void fatal(Object obj, String strMessage, Throwable t)
+    {
+        String strPlainMessage = strMessage.replace('{', '[').replace('}', ']');
+        DfLogger.fatal(obj, strPlainMessage, null, t);
+    }
 }
