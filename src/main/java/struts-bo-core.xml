@@ -12,11 +12,12 @@
 			<result name="error" type="velocity">/errors/notfound.vm</result>
 		</action>
 	</package>
+
 	<!--Security - Login namespace="/backend/user" -->
-	<package name="security" extends="default" namespace="/backend/user">
+	<package name="security" extends="default" namespace="/">
 		<action name="index" class="com.gihow.security.login.LoginForm">
 			<result name="login" type="velocity">
-				/view/frontpage/login/login.vm
+				/template/view/frontpage/login/login.vm
 			</result>
 			<result name="continue" type="redirect">
 				../yuitree.action
@@ -26,12 +27,14 @@
 			</result>
 			<result name="error">/errors/notfound.vm</result>
 		</action>
+
 		<action name="login" class="com.gihow.security.login.Login">
-			<result name="success" type="redirect">
-				index.action?redirectUri=${redirectUri}
+			<result name="success" >
+                hello.jsp
 			</result>
-			<result name="input" type="velocity">
-				/view/frontpage/login/login.vm
+			<result name="input">
+                <!--/template/view/frontpage/login/login.v1m-->
+                login.jsp
 			</result>
 			<result name="error">/errors/notfound.vm</result>
 		</action>
@@ -43,7 +46,7 @@
 				../../${redirectUri}
 			</result>
 			<result name="input" type="redirect">
-				/view/frontpage/login/site.vm
+                /template/view/frontpage/login/site.vm
 			</result>
 		</action>
 		<action name="logout" class="com.gihow.security.login.Logout">
@@ -62,15 +65,15 @@
 
 		<action name="create" class="org.bo.actions.descriptor.DescriptorForm">
 			<result name="success" type="velocity">
-				/view/module/descriptor/add.vm
+                /template/view/module/descriptor/add.vm
 			</result>
 		</action>
 		<action name="add" class="org.bo.actions.descriptor.AddDescriptor">
 			<result name="success" type="velocity">
-				/view/module/descriptor/addSuccess.vm
+                /template/view/module/descriptor/addSuccess.vm
 			</result>
 			<result name="input" type="velocity">
-				/view/module/descriptor/add.vm
+                /template/view/module/descriptor/add.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -78,12 +81,12 @@
 		</action>
 		<action name="list" class="org.bo.actions.descriptor.ListDescriptor">
 			<result name="success" type="velocity">
-				/view/module/descriptor/list.vm
+                /template/view/module/descriptor/list.vm
 			</result>
 		</action>
 		<action name="view" class="org.bo.actions.descriptor.DescriptorForm">
 			<result name="success" type="velocity">
-				/view/module/descriptor/view.vm
+                /template/view/module/descriptor/view.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -91,7 +94,7 @@
 		</action>
 		<action name="edit" class="org.bo.actions.descriptor.DescriptorForm">
 			<result name="success" type="velocity">
-				/view/module/descriptor/edit.vm
+                /template/view/module/descriptor/edit.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -102,7 +105,7 @@
 				view.action?id=${id}
 			</result>
 			<result name="input" type="velocity">
-				/view/module/descriptor/edit.vm
+                /template/view/module/descriptor/edit.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -110,12 +113,12 @@
 		</action>
 		<action name="filter" class="org.bo.actions.descriptor.DescriptorForm">
 			<result name="success" type="velocity">
-				/view/module/descriptor/filter.vm
+                /template/view/module/descriptor/filter.vm
 			</result>
 		</action>
 		<action name="search" class="org.bo.actions.descriptor.SearchDescriptor">
 			<result name="success" type="velocity">
-				/view/module/descriptor/result.vm
+                /template/view/module/descriptor/result.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -123,7 +126,7 @@
 		</action>
 		<action name="delete" class="org.bo.actions.descriptor.DeleteDescriptor">
 			<result name="success" type="velocity">
-				/view/module/descriptor/deleteSuccess.vm
+                /template/view/module/descriptor/deleteSuccess.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -131,7 +134,7 @@
 		</action>
 		<action name="confirmDelete" class="org.bo.actions.descriptor.DescriptorForm">
 			<result name="success" type="velocity">
-				/view/module/descriptor/confirmDelete.vm
+                /template/view/module/descriptor/confirmDelete.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -144,12 +147,12 @@
 		namespace="/module/module">
 		<action name="listModuleDescriptor" class="org.bo.actions.descriptor.ListDescriptor">
 			<result name="success" type="velocity">
-				/view/module/module/listModuleDescriptor.vm
+                /template/view/module/module/listModuleDescriptor.vm
 			</result>
 		</action>
 		<action name="create" class="org.bo.actions.modulefunction.ModuleFunctionForm">
 			<result name="success" type="velocity">
-				/view/module/module/addModuleFunction.vm
+                /template/view/module/module/addModuleFunction.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/notfound.jsp
@@ -157,7 +160,7 @@
 		</action>
 		<action name="addModuleFunction" class="org.bo.actions.modulefunction.AddModuleFunction">
 			<result name="success" type="velocity">
-				/view/module/module/addSuccess.vm
+                /template/view/module/module/addSuccess.vm
 			</result>
 			<result name="input" type="velocity">
 				/view/module/module/addModuleFunction.vm
@@ -169,28 +172,28 @@
 		<action name="listModulePrivilage"
 			class="org.bo.actions.modulefunction.ListModulePrivilage">
 			<result name="success" type="velocity">
-				/view/module/module/listModulePrivilage.vm
+                /template/view/module/module/listModulePrivilage.vm
 			</result>
 		</action>
 		<action name="listModuleFunction" class="org.bo.actions.modulefunction.ListModuleFunction">
 			<result name="success" type="velocity">
-				/view/module/module/listModuleFunction.vm
+                /template/view/module/module/listModuleFunction.vm
 			</result>
 		</action>
 		<action name="listThreadNumber" class="org.bo.actions.modulefunction.ListModuleFunction">
 			<result name="success" type="velocity">
-				/view/module/module/listThreadNumber.vm
+                /template/view/module/module/listThreadNumber.vm
 			</result>
 		</action>
 		<action name="filter" class="org.bo.actions.modulefunction.ModuleFunctionForm">
 			<result name="success" type="velocity">
-				/view/module/module/filterModuleFunction.vm
+                /template/view/module/module/filterModuleFunction.vm
 			</result>
 		</action>
 		<action name="searchModuleFunction"
 			class="org.bo.actions.modulefunction.SearchModuleFunction">
 			<result name="success" type="velocity">
-				/view/module/module/resultModuleFunction.vm
+                /template/view/module/module/resultModuleFunction.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/notfound.jsp
@@ -198,7 +201,7 @@
 		</action>
 		<action name="viewModuleFunction" class="org.bo.actions.modulefunction.ModuleFunctionForm">
 			<result name="success" type="velocity">
-				/view/module/module/viewModuleFunction.vm
+                /template/view/module/module/viewModuleFunction.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/notfound.jsp
@@ -206,7 +209,7 @@
 		</action>
 		<action name="confirmDeleteModuleFunction" class="org.bo.actions.modulefunction.ModuleFunctionForm">
 			<result name="success" type="velocity">
-				/view/module/module/confirmDeleteModuleFunction.vm
+                /template/view/module/module/confirmDeleteModuleFunction.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/notfound.jsp
@@ -215,7 +218,7 @@
 		<action name="deleteModuleFunction"
 			class="org.bo.actions.modulefunction.DeleteModuleFunction">
 			<result name="success" type="velocity">
-				/view/module/module/deleteSuccess.vm
+                /template/view/module/module/deleteSuccess.vm
 			</result>
 			<result name="input" type="velocity">
 				/view/module/module/confirmDeleteModuleFunction.vm
@@ -226,30 +229,32 @@
 		</action>
 		<action name="editModuleFunction" class="org.bo.actions.modulefunction.ModuleFunctionForm">
 			<result name="success" type="velocity">
-				/view/module/module/editModuleFunction.vm
+                /template/view/module/module/editModuleFunction.vm
 			</result>
 		</action>
 		<action name="upDateModuleFunction"
 			class="org.bo.actions.modulefunction.UpDateModuleFunction">
 			<result name="success" type="velocity">
-				/view/module/module/viewModuleFunction.vm
+                /template/view/module/module/viewModuleFunction.vm
 			</result>
 			<result name="input" type="velocity">
-				/view/module/module/editModuleFunction.vm
+                /template/view/module/module/editModuleFunction.vm
 			</result>
 		</action>
+
+
 		<!-- End Module Function -->
 	</package>
 	<!--Role -->
 	<package name="role" extends="default" namespace="/module/role">
 		<action name="create" class="org.bo.actions.role.RoleForm">
 			<result name="success" type="velocity">
-				/view/module/role/add.vm
+                /template/view/module/role/add.vm
 			</result>
 		</action>
 		<action name="view_privilage" class="org.bo.actions.role.RoleForm">
 			<result name="success" type="velocity">
-				/view/module/role/view_privilage.vm
+                /template/view/module/role/view_privilage.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/notfound.jsp
@@ -265,20 +270,20 @@
 		</action>
 		<action name="add" class="org.bo.actions.role.AddRole">
 			<result name="success" type="velocity">
-				/view/module/role/view_privilage.vm
+                /template/view/module/role/view_privilage.vm
 			</result>
 			<result name="input" type="velocity">
-				/view/module/role/add.vm
+                /template/view/module/role/add.vm
 			</result>
 		</action>
 		<action name="list" class="org.bo.actions.role.ListRole">
 			<result name="success" type="velocity">
-				/view/module/role/list.vm
+                /template/view/module/role/list.vm
 			</result>
 		</action>
 		<action name="confirmDelete" class="org.bo.actions.role.RoleForm">
 			<result name="success" type="velocity">
-				/view/module/role/confirmDelete.vm
+                /template/view/module/role/confirmDelete.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/notfound.vm
@@ -294,13 +299,13 @@
 		</action>
 		<action name="edit" class="org.bo.actions.role.RoleForm">
 			<result name="success" type="velocity">
-				/view/module/role/edit.vm
+                /template/view/module/role/edit.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
 			</result>
 			<result name="input" type="velocity">
-				/view/module/role/edit.vm
+                /template/view/module/role/edit.vm
 			</result>
 		</action>
 		<action name="update" class="org.bo.actions.role.EditRole">
@@ -308,7 +313,7 @@
 				view.action?id=${id}
 			</result>
 			<result name="input" type="velocity">
-				/view/module/role/edit.vm
+                /template/view/module/role/edit.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -316,7 +321,7 @@
 		</action>
 		<action name="view" class="org.bo.actions.role.RoleForm">
 			<result name="success" type="velocity">
-				/view/module/role/view.vm
+                /template/view/module/role/view.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -324,7 +329,7 @@
 		</action>
 		<action name="filter" class="org.bo.actions.role.RoleFilter">
 			<result name="success" type="velocity">
-				/view/module/role/filter_privilage.vm
+                /template/view/module/role/filter_privilage.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/notfound.jsp
@@ -332,7 +337,7 @@
 		</action>
 		<action name="rpbuilder" class="org.bo.builder.RolePrivilageSrcBuilder">
 			<result name="success" type="velocity">
-				/view/module/role/buildSuccess.vm
+                /template/view/module/role/buildSuccess.vm
 			</result>
 			<result name="fileExist" type="velocity">
 				/view/module/role/fileExist.vm
@@ -352,22 +357,22 @@
 	<package name="password" extends="default" namespace="/user/password">
 		<action name="edit" class="org.bo.password.PasswordForm">
 			<result name="success" type="velocity">
-				/view/module/password/form.vm
+                /template/view/module/password/form.vm
 			</result>
 		</action>
 		<action name="update" class="org.bo.password.UpdatePassword">
 			<result name="success" type="velocity">
-				/view/module/password/successUpdate.vm
+                /template/view/module/password/successUpdate.vm
 			</result>
 			<result name="input" type="velocity">
-				/view/module/password/form.vm
+                /template/view/module/password/form.vm
 			</result>
 		</action>
 	</package>
 	<package name="profile" extends="default" namespace="/user/profile">
 		<action name="edit" class="org.bo.security.actions.usermanager.UserForm">
 			<result name="success" type="velocity">
-				/view/module/user/edit.vm
+                /template/view/module/user/edit.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -378,7 +383,7 @@
 				view.action?id=${id}
 			</result>
 			<result name="input" type="velocity">
-				/view/module/user/edit.vm
+                /template/view/module/user/edit.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -389,7 +394,7 @@
 	<package name="usermanager" extends="default" namespace="/module/user">
 		<action name="create" class="org.bo.security.actions.usermanager.UserForm">
 			<result name="success" type="velocity">
-				/view/module/user/index.vm
+                /template/view/module/user/index.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/notfound.jsp
@@ -397,7 +402,7 @@
 		</action>
 		<action name="filter" class="org.bo.security.actions.usermanager.UserForm">
 			<result name="success" type="velocity">
-				/view/module/user/search.vm
+                /template/view/module/user/search.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/notfound.jsp
@@ -405,21 +410,21 @@
 		</action>
 		<action name="search" class="org.bo.security.actions.usermanager.SearchUser">
 			<result name="success" type="velocity">
-				/view/module/user/result.vm
+                /template/view/module/user/result.vm
 			</result>
 			<result name="error">/errors/notfound.jsp</result>
 		</action>
 		<action name="viewRole" class="org.bo.actions.role.ListRole">
 			<result name="success" type="velocity">
-				/view/module/user/viewRole.vm
+                /template/view/module/user/viewRole.vm
 			</result>
 		</action>
 		<action name="add" class="org.bo.security.actions.usermanager.AddUser">
 			<result name="success" type="velocity">
-				/view/module/user/addSuccess.vm
+                /template/view/module/user/addSuccess.vm
 			</result>
 			<result name="input" type="velocity">
-				/view/module/user/index.vm
+                /template/view/module/user/index.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -427,12 +432,12 @@
 		</action>
 		<action name="savesucces" class="org.bo.security.actions.usermanager.UserForm">
 			<result name="success" type="velocity">
-				/view/module/user/Success.vm
+                /template/view/module/user/Success.vm
 			</result>
 		</action>
 		<action name="confirmDelete" class="org.bo.security.actions.usermanager.UserForm">
 			<result name="success" type="velocity">
-				/view/module/user/confirmDelete.vm
+                /template/view/module/user/confirmDelete.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -440,7 +445,7 @@
 		</action>
 		<action name="delete" class="org.bo.security.actions.usermanager.DeleteUser">
 			<result name="success" type="velocity">
-				/view/module/user/deleteSuccess.vm
+                /template/view/module/user/deleteSuccess.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -448,7 +453,7 @@
 		</action>
 		<action name="view" class="org.bo.security.actions.usermanager.UserForm">
 			<result name="success" type="velocity">
-				/view/module/user/view.vm
+                /template/view/module/user/view.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -456,7 +461,7 @@
 		</action>
 		<action name="edit" class="org.bo.security.actions.usermanager.UserForm">
 			<result name="success" type="velocity">
-				/view/module/user/edit.vm
+                /template/view/module/user/edit.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -467,7 +472,7 @@
 				view.action?id=${id}
 			</result>
 			<result name="input" type="velocity">
-				/view/module/user/edit.vm
+                /template/view/module/user/edit.vm
 			</result>
 			<result name="error" type="velocity">
 				/errors/errors.vm
@@ -477,25 +482,25 @@
 	
 	<package name="registration" extends="default" namespace="/">
 		<action name="register" class="org.bo.registration.RegistrationForm">
-			<result name="success" type="velocity">/view/frontpage/register/register.vm
+			<result name="success" type="velocity">/template/view/frontpage/register/register.vm
 			</result>
 		</action>
 		<action name="registeruser" class="org.bo.registration.RegisterUser">
-			<result name="input" type="velocity">/view/frontpage/register/register.vm
+			<result name="input" type="velocity">/template/view/frontpage/register/register.vm
 			</result>
-			<result name="success" type="velocity">/view/frontpage/register/success.vm
+			<result name="success" type="velocity">/template/view/frontpage/register/success.vm
 			</result>
 		</action>
 		<action name="reqactmail" class="org.bo.registration.RegistrationForm">
-			<result name="success" type="velocity">/view/frontpage/register/activation.vm
+			<result name="success" type="velocity">/template/view/frontpage/register/activation.vm
 			</result>
 		</action>
 		<action name="sendactmail" class="org.bo.registration.ResendMail">
-			<result name="success" type="velocity">/view/frontpage/register/success.vm
+			<result name="success" type="velocity">/template/view/frontpage/register/success.vm
 			</result>
 		</action>
 		<action name="activation" class="org.bo.registration.AuthenticationEmail">
-			<result name="success" type="velocity">/view/frontpage/register/activated.vm
+			<result name="success" type="velocity">/template/view/frontpage/register/activated.vm
 			</result>
 		</action>
 

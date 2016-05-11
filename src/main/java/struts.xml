@@ -30,6 +30,8 @@
 		<action name="*">
 			<result type="velocity">/errors/notfound.vm</result>
 		</action>
+
+
 	</package>
 	<include file="struts-bo-core.xml" />
 	<include file="struts-*.xml" />
