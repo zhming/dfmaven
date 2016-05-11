@@ -1,3 +1,3 @@
 <script>
-	window.open("backend/user/index.action", "_parent");
+	window.open("login.jsp", "_parent");
 </script>

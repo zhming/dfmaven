@@ -1,16 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Bourne
-  Date: 16-5-6
-  Time: 上午11:49
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="/struts-tags" prefix="s"%>
 <html>
 <head>
-    <title></title>
+    <title>Login</title>
 </head>
 <body>
-       <h1>Hello</h1>
+<h3>FieldError in Struts 2</h3>
+<s:form action="loginUser">
+    <s:textfield name="username" placeholder="Username" label="Username" />
+    <s:password name="password" placeholder="Password" label="Password" />
+    <s:submit value="Submit" />
+</s:form>
 </body>
 </html>
