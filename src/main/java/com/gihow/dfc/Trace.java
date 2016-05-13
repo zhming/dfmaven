@@ -32,12 +32,13 @@ public class Trace extends com.gihow.debug.Trace
 	public static boolean SEARCH;
 	public static boolean BREADCRUMBSERVICE;
 
-    public static boolean SESSION;
+    public static boolean SESSION = true;
     public static boolean CLIENTSESSIONSTATE;
     public static boolean CLIENTDOCBASE;
     public static boolean CONFIGSERVICE;
     public static boolean CONFIGMODIFICATION;
     public static boolean RESPONSE_HEADER_CONTROL;
+    public static boolean PREFERENCES;
 
 	public Trace()
 	{

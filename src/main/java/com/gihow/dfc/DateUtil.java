@@ -6,6 +6,7 @@
 package com.gihow.dfc;
 
 import com.documentum.fc.common.DfLogger;
+import com.gihow.util.StringUtil;
 
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;

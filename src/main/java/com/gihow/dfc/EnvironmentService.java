@@ -66,8 +66,10 @@ public class EnvironmentService
                 {
                     if(s_defEnvironment == null)
                     {
-                        String strDefaultServerEnvClass = com.documentum.web.env.app.AppServerEnvironment.class.getName();
+//                        String strDefaultServerEnvClass = com.documentum.web.env.app.AppServerEnvironment.class.getName();
+                        String strDefaultServerEnvClass = "";
                         s_defEnvironment = createEnvironment(strDefaultServerEnvClass);
+
                     }
                 }
                 env = s_defEnvironment;
@@ -79,47 +81,47 @@ public class EnvironmentService
 
     private static AbstractEnvironment createEnvironment(String strEnvironmentClass)
     {
-        AbstractEnvironment env;
+        AbstractEnvironment env = null;
         Exception exception;
-        if(Trace.ENVIRONMENT)
-            Trace.println((new StringBuilder()).append("Environment Service: Environment Class = ").append(strEnvironmentClass).toString());
-        env = null;
-        if(s_inCreateEnvironmentCall.get() != null)
-           // break MISSING_BLOCK_LABEL_265;
-        s_inCreateEnvironmentCall.set(Boolean.TRUE);
-        try
-        {
-            Class classEnvironment = Class.forName(strEnvironmentClass);
-            Environment registeredEnv = (Environment)classEnvironment.newInstance();
-            env = registeredEnv;
-        }
-        catch(ClassNotFoundException err)
-        {
-            throw new WrapperRuntimeException((new StringBuilder()).append("Could not find environment impl class ").append(strEnvironmentClass).toString(), err);
-        }
-        catch(InstantiationException err)
-        {
-            throw new WrapperRuntimeException((new StringBuilder()).append("Could not create environment ").append(strEnvironmentClass).toString(), err);
-        }
-        catch(IllegalAccessException err)
-        {
-            throw new WrapperRuntimeException((new StringBuilder()).append("Could not create environment ").append(strEnvironmentClass).append(" due to insuficient privileges").toString(), err);
-        }
-        catch(ClassCastException err)
-        {
-            throw new WrapperRuntimeException((new StringBuilder()).append("Environment ").append(strEnvironmentClass).append(" is not a type of ").append(com.documentum.web.env.Environment.class.getName()).toString(), err);
-        }
-        finally
-        {
-            s_inCreateEnvironmentCall.set(null);
-        }
-        s_inCreateEnvironmentCall.set(null);
-        //break MISSING_BLOCK_LABEL_220;
-       // throw exception;
-        if(env == null)
-            throw new WrapperRuntimeException("Failed to create environment impl");
-        if(Trace.ENVIRONMENT)
-            Trace.println((new StringBuilder()).append("Environment Service: Environment Created... ").append(env.toString()).toString());
+//        if(Trace.ENVIRONMENT)
+//            Trace.println((new StringBuilder()).append("Environment Service: Environment Class = ").append(strEnvironmentClass).toString());
+//        env = null;
+//        if(s_inCreateEnvironmentCall.get() != null)
+//           // break MISSING_BLOCK_LABEL_265;
+//        s_inCreateEnvironmentCall.set(Boolean.TRUE);
+//        try
+//        {
+//            Class classEnvironment = Class.forName(strEnvironmentClass);
+//            Environment registeredEnv = (Environment)classEnvironment.newInstance();
+//            env = registeredEnv;
+//        }
+//        catch(ClassNotFoundException err)
+//        {
+//            throw new WrapperRuntimeException((new StringBuilder()).append("Could not find environment impl class ").append(strEnvironmentClass).toString(), err);
+//        }
+//        catch(InstantiationException err)
+//        {
+//            throw new WrapperRuntimeException((new StringBuilder()).append("Could not create environment ").append(strEnvironmentClass).toString(), err);
+//        }
+//        catch(IllegalAccessException err)
+//        {
+//            throw new WrapperRuntimeException((new StringBuilder()).append("Could not create environment ").append(strEnvironmentClass).append(" due to insuficient privileges").toString(), err);
+//        }
+//        catch(ClassCastException err)
+//        {
+//            throw new WrapperRuntimeException((new StringBuilder()).append("Environment ").append(strEnvironmentClass).append(" is not a type of ").append(com.documentum.web.env.Environment.class.getName()).toString(), err);
+//        }
+//        finally
+//        {
+//            s_inCreateEnvironmentCall.set(null);
+//        }
+//        s_inCreateEnvironmentCall.set(null);
+//        //break MISSING_BLOCK_LABEL_220;
+//       // throw exception;
+//        if(env == null)
+//            throw new WrapperRuntimeException("Failed to create environment impl");
+//        if(Trace.ENVIRONMENT)
+//            Trace.println((new StringBuilder()).append("Environment Service: Environment Created... ").append(env.toString()).toString());
         return env;
     }
 
@@ -130,56 +132,57 @@ public class EnvironmentService
 
     public final void notifyRequestStart(HttpServletRequest request, HttpServletResponse response)
     {
-        if(Trace.ENVIRONMENT)
-        {
-            Trace.println("Environment Service: Notify request start...");
-            Trace.println((new StringBuilder()).append("Environment Service: ...session = ").append(request.getSession().getId()).toString());
-            Trace.println((new StringBuilder()).append("Environment Service: ...URI = ").append(request.getRequestURI()).toString());
-        }
-        AbstractEnvironment env = getEnvironment();
-        env.notifyRequestStart(request, response);
-        if(env instanceof ILifecycle)
-            ((ILifecycle)env).onRequestStart(request);
-        String tzOff = request.getParameter("__dmfTzoff");
-        if(tzOff != null && tzOff.length() > 0)
-            LocaleService.setTimeZone(Integer.valueOf(tzOff, 10).intValue());
+//        if(Trace.ENVIRONMENT)
+//        {
+//            Trace.println("Environment Service: Notify request start...");
+//            Trace.println((new StringBuilder()).append("Environment Service: ...session = ").append(request.getSession().getId()).toString());
+//            Trace.println((new StringBuilder()).append("Environment Service: ...URI = ").append(request.getRequestURI()).toString());
+//        }
+//        AbstractEnvironment env = getEnvironment();
+//        env.notifyRequestStart(request, response);
+//        if(env instanceof ILifecycle)
+//            ((ILifecycle)env).onRequestStart(request);
+//        String tzOff = request.getParameter("__dmfTzoff");
+//        if(tzOff != null && tzOff.length() > 0)
+//            LocaleService.setTimeZone(Integer.valueOf(tzOff, 10).intValue());
     }
 
     public final void notifyRequestFinish(HttpServletRequest request, HttpServletResponse response)
     {
-        AbstractEnvironment env = getEnvironment();
-        env.notifyRequestFinish(request, response);
-        if(env instanceof ILifecycle)
-            ((ILifecycle)env).onRequestFinish(request);
-        request.removeAttribute(Thread.currentThread().getName());
+//        AbstractEnvironment env = getEnvironment();
+//        env.notifyRequestFinish(request, response);
+//        if(env instanceof ILifecycle)
+//            ((ILifecycle)env).onRequestFinish(request);
+//        request.removeAttribute(Thread.currentThread().getName());
     }
 
     public final void notifySessionStart(HttpSession session)
     {
-        if(Trace.ENVIRONMENT)
-        {
-            Trace.println("Environment Service: Notify session start...");
-            Trace.println((new StringBuilder()).append("Environment Service: ...session = ").append(session.getId()).toString());
-        }
-        AbstractEnvironment env = getEnvironment();
-        if(env instanceof ILifecycle)
-            ((ILifecycle)env).onSessionStart(session);
+//        if(Trace.ENVIRONMENT)
+//        {
+//            Trace.println("Environment Service: Notify session start...");
+//            Trace.println((new StringBuilder()).append("Environment Service: ...session = ").append(session.getId()).toString());
+//        }
+//        AbstractEnvironment env = getEnvironment();
+//        if(env instanceof ILifecycle)
+//            ((ILifecycle)env).onSessionStart(session);
     }
 
     public final void notifySessionFinish(HttpSession session)
     {
-        if(Trace.ENVIRONMENT)
-        {
-            Trace.println("Environment Service: Notify session finish...");
-            Trace.println((new StringBuilder()).append("Environment Service: ...session = ").append(session.getId()).toString());
-        }
-        AbstractEnvironment env = getEnvironment();
-        if(env instanceof ILifecycle)
-            ((ILifecycle)env).onSessionFinish(session);
+//        if(Trace.ENVIRONMENT)
+//        {
+//            Trace.println("Environment Service: Notify session finish...");
+//            Trace.println((new StringBuilder()).append("Environment Service: ...session = ").append(session.getId()).toString());
+//        }
+//        AbstractEnvironment env = getEnvironment();
+//        if(env instanceof ILifecycle)
+//            ((ILifecycle)env).onSessionFinish(session);
     }
 
     private static EnvironmentService s_envService = new EnvironmentService();
-    private static final String STR_ENVIRONMENT = com.documentum.web.env.AbstractEnvironment.class.getName();
+//    private static final String STR_ENVIRONMENT = com.documentum.web.env.AbstractEnvironment.class.getName();
+    private static final String STR_ENVIRONMENT = "";
     private static final String ENVIRONMENT_SERVICE_VERSION = "6.0";
     private static AbstractEnvironment s_defEnvironment = null;
     private static final ThreadLocal s_inCreateEnvironmentCall = new ThreadLocal();

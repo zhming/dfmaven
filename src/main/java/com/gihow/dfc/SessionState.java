@@ -130,8 +130,8 @@ public class SessionState
 			registerSessionStore(sessionStore);
 		}
 		sessionStore.setAttribute(strAttrName, oValue);
-//		if (Trace.SESSIONSTATE)
-//			Trace.println((new StringBuilder()).append("SessionState: [").append(sessionStore.getSessionId()).append("] Set ").append(strAttrName).append(" = ").append(oValue).toString());
+		if (Trace.SESSIONSTATE)
+			Trace.println((new StringBuilder()).append("SessionState: [").append(sessionStore.getSessionId()).append("] Set ").append(strAttrName).append(" = ").append(oValue).toString());
 	}
 
 	public static Object getAttribute(String strAttrName)

@@ -117,89 +117,89 @@ public abstract class AbstractEnvironment
 		return iDispatch;
 	}
 
-	public final ILogin getLoginContract()
-	{
-		ILogin iLogin = null;
-		if (this instanceof ILogin)
-			iLogin = (ILogin)this;
-		return iLogin;
-	}
-
-	public final IRender getRenderContract()
-	{
-		IRender iContract = null;
-		if (this instanceof IRender)
-			iContract = (IRender)this;
-		return iContract;
-	}
-
-	public final ILocale getLocaleContract()
-	{
-		ILocale iContract = null;
-		if (this instanceof ILocale)
-			iContract = (ILocale)this;
-		return iContract;
-	}
-
-	public final ISecurity getSecurityContract()
-	{
-		ISecurity iContract = null;
-		if (this instanceof ISecurity)
-			iContract = (ISecurity)this;
-		return iContract;
-	}
-
-	public final IError getErrorContract()
-	{
-		IError iError = null;
-		if (this instanceof IError)
-			iError = (IError)this;
-		return iError;
-	}
-
-	public final IContentTransfer getContentTransferContract()
-	{
-		IContentTransfer iContract = null;
-		if (this instanceof IContentTransfer)
-			iContract = (IContentTransfer)this;
-		return iContract;
-	}
-
-	public final ITheme getThemeContract()
-	{
-		ITheme iContract = null;
-		if (this instanceof ITheme)
-			iContract = (ITheme)this;
-		return iContract;
-	}
-
-	/**
-	 * @deprecated Method getActionPreconditionContract is deprecated
-	 */
-
-	public final IActionPrecondition getActionPreconditionContract()
-	{
-		IActionPrecondition iContract = null;
-		if (this instanceof IActionPrecondition)
-			iContract = (IActionPrecondition)this;
-		return iContract;
-	}
-
-	public final IMessageService getMessageServiceContract()
-	{
-		IMessageService iContract = null;
-		if (this instanceof IMessageService)
-			iContract = (IMessageService)this;
-		return iContract;
-	}
-
-	public final IFormOperationListener getFormOperationListenerContract()
-	{
-		IFormOperationListener iContract = null;
-		if (this instanceof IFormOperationListener)
-			iContract = (IFormOperationListener)this;
-		return iContract;
-	}
+//	public final ILogin getLoginContract()
+//	{
+//		ILogin iLogin = null;
+//		if (this instanceof ILogin)
+//			iLogin = (ILogin)this;
+//		return iLogin;
+//	}
+//
+//	public final IRender getRenderContract()
+//	{
+//		IRender iContract = null;
+//		if (this instanceof IRender)
+//			iContract = (IRender)this;
+//		return iContract;
+//	}
+//
+//	public final ILocale getLocaleContract()
+//	{
+//		ILocale iContract = null;
+//		if (this instanceof ILocale)
+//			iContract = (ILocale)this;
+//		return iContract;
+//	}
+//
+//	public final ISecurity getSecurityContract()
+//	{
+//		ISecurity iContract = null;
+//		if (this instanceof ISecurity)
+//			iContract = (ISecurity)this;
+//		return iContract;
+//	}
+//
+//	public final IError getErrorContract()
+//	{
+//		IError iError = null;
+//		if (this instanceof IError)
+//			iError = (IError)this;
+//		return iError;
+//	}
+//
+//	public final IContentTransfer getContentTransferContract()
+//	{
+//		IContentTransfer iContract = null;
+//		if (this instanceof IContentTransfer)
+//			iContract = (IContentTransfer)this;
+//		return iContract;
+//	}
+//
+//	public final ITheme getThemeContract()
+//	{
+//		ITheme iContract = null;
+//		if (this instanceof ITheme)
+//			iContract = (ITheme)this;
+//		return iContract;
+//	}
+//
+//	/**
+//	 * @deprecated Method getActionPreconditionContract is deprecated
+//	 */
+//
+//	public final IActionPrecondition getActionPreconditionContract()
+//	{
+//		IActionPrecondition iContract = null;
+//		if (this instanceof IActionPrecondition)
+//			iContract = (IActionPrecondition)this;
+//		return iContract;
+//	}
+//
+//	public final IMessageService getMessageServiceContract()
+//	{
+//		IMessageService iContract = null;
+//		if (this instanceof IMessageService)
+//			iContract = (IMessageService)this;
+//		return iContract;
+//	}
+//
+//	public final IFormOperationListener getFormOperationListenerContract()
+//	{
+//		IFormOperationListener iContract = null;
+//		if (this instanceof IFormOperationListener)
+//			iContract = (IFormOperationListener)this;
+//		return iContract;
+//	}
 
 	public abstract ResourceBundle getResourceBundle();
 

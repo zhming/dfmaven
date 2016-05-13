@@ -6,10 +6,12 @@
 package com.gihow.dfc;
 
 import com.documentum.com.DfClientX;
+import com.documentum.com.IDfClientX;
 import com.documentum.fc.client.*;
 import com.documentum.fc.client.impl.session.ISession;
 import com.documentum.fc.common.DfException;
 import com.documentum.fc.common.DfLoginInfo;
+import com.documentum.fc.common.IDfException;
 import com.documentum.fc.common.IDfLoginInfo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,7 +52,7 @@ public class SessionManagerHttpBinding
 			}
 			catch (DfException exp)
 			{
-				//throw new WrapperRuntimeException(exp);
+				throw new WrapperRuntimeException(exp);
 			}
 			return m_docbrokerClient;
 		}
@@ -96,6 +98,8 @@ public class SessionManagerHttpBinding
 				Trace.println("Failed to retrieve Docbase list.");
 			}
 		}
+
+
 	}
 
 	private static final class SessionBinding
@@ -136,7 +140,7 @@ public class SessionManagerHttpBinding
 		private void cleanup()
 		{
 			if (m_sessionManager != null)
-			{
+            {
 				if (Trace.SESSION)
 					Trace.println((new StringBuilder()).append("Session: HTTP Session closing session manager ").append(m_sessionManager).toString());
 				m_sessionManager.clearIdentities();
@@ -212,14 +216,6 @@ public class SessionManagerHttpBinding
 			return docbase;
 		}
 
-
-
-
-
-
-
-
-
 		public SessionBinding(IDfSessionManager sessionManager)
 		{
 			m_sessionManager = null;
@@ -272,8 +268,7 @@ public class SessionManagerHttpBinding
 
 	public static IDfSessionManager getSessionManager()
 	{
-		IDfSessionManager sessionManager;
-		sessionManager = null;
+		IDfSessionManager sessionManager = null;
 		SessionBinding binding = (SessionBinding) SessionState.getAttribute("__dmfSessionBinding");
 		if (binding != null)
 			sessionManager = binding.getSessionManager();
@@ -610,31 +605,40 @@ public class SessionManagerHttpBinding
 
 	private static IDfSessionManager newDfSessionManager(IDfSessionManager oldManager)
 	{
-		String mode = ConfigService.getConfigLookup().lookupString("application.dfsessionmanager_mode", Context.getApplicationContext());
+		//String mode = ConfigService.getConfigLookup().lookupString("application.dfsessionmanager_mode", Context.getApplicationContext());
 		IDfSessionManager sessionManager = null;
 		try
 		{
-			if (mode != null && mode.equals("admin"))
-			{
-				if (canSupportKerberos())
-				{
-					IDfClient client = DfcUtils.getClientX().getLocalClient();
-					sessionManager = client.newSessionManager();
-				} else
-				if (oldManager != null && (oldManager instanceof DfAdminSessionManager))
-					sessionManager = new DfAdminSessionManager((DfAdminSessionManager)oldManager);
-				else
-					sessionManager = new DfAdminSessionManager();
-			} else
-			{
-				IDfClient client = DfcUtils.getClientX().getLocalClient();
-				sessionManager = client.newSessionManager();
-			}
+//			if (mode != null && mode.equals("admin"))
+//			{
+//				if (canSupportKerberos())
+//				{
+//					IDfClient client = DfcUtils.getClientX().getLocalClient();
+//					sessionManager = client.newSessionManager();
+//				} else
+//				if (oldManager != null && (oldManager instanceof DfAdminSessionManager))
+//					sessionManager = new DfAdminSessionManager((DfAdminSessionManager)oldManager);
+//				else
+//					sessionManager = new DfAdminSessionManager();
+//			} else
+//			{
+//                IDfClient client = DfcUtils.getClientX().getLocalClient();
+//                sessionManager = client.newSessionManager();
+//			}
+            //IDfClient client = DfcUtils.getClientX().getLocalClient();
+            IDfClientX clientX = new DfClientX();
+            IDfClient client = clientX.getLocalClient();
+            sessionManager = client.newSessionManager();
+            //sessionManager = new DfAdminSessionManager();
 		}
 		catch (DfException dfe)
 		{
+            dfe.printStackTrace();
 			throw new WrapperRuntimeException("Failed to create session manager", dfe);
-		}
+
+		} catch (Exception e){
+            e.printStackTrace();
+        }
 		return sessionManager;
 	}
 
@@ -675,10 +679,11 @@ public class SessionManagerHttpBinding
 
 	public final void notifyRequestStart(HttpServletRequest request, HttpServletResponse response)
 	{
+        System.out.println("SessionManagerHttpBingding........notifyRequestStart......start");
 		String strDocbaseSource = null;
-		String strDocbase = SECURITY.validator().getValidParameterValue("currentDocbase", request.getParameter("currentDocbase"), "XSS");
-		strDocbase = SECURITY.validator().getValidHeader("SessionManagerHttpBinding", strDocbase, "Header Manipulation");
-		strDocbase = SECURITY.validator().getValidatedPath("DocbaseName", strDocbase, 1, null);
+		String strDocbase = ((WDKESAPIValidator)SECURITY.validator()).getValidParameterValue("currentDocbase", request.getParameter("currentDocbase"), "XSS");
+		strDocbase = ((WDKESAPIValidator)SECURITY.validator()).getValidHeader("SessionManagerHttpBinding", strDocbase, "Header Manipulation");
+		strDocbase = ((WDKESAPIValidator)SECURITY.validator()).getValidatedPath("DocbaseName", strDocbase, 1, null);
 		if (strDocbase != null)
 		{
 			strDocbaseSource = "currentDocbase Reqeust parameter";
@@ -694,10 +699,12 @@ public class SessionManagerHttpBinding
 				Trace.println((new StringBuilder()).append("SessionManagerHttpBinding.notifyRequestStart: Setting CurrentDocbase from ").append(strDocbaseSource).append(" DOCBASE: ").append(strDocbase).append("    request:").append(request.getRequestURL()).toString());
 			setCurrentDocbase(strDocbase);
 		}
+        System.out.println("SessionManagerHttpBingding........notifyRequestStart......end");
 	}
 
 	public final void notifyRequestFinish(HttpServletRequest request, HttpServletResponse response)
 	{
+        System.out.println("SessionManagerHttpBingding........notifyRequestFinish");
 		s_strCurrentDocbase.set(null);
 	}
 
@@ -726,4 +733,19 @@ public class SessionManagerHttpBinding
 
 
 
+    public static void main(String[] args){
+        System.out.println("Hello");
+        DocbrokerClientBinding docbrokerClientBinding = new DocbrokerClientBinding();
+        List<ConnectionBroker> docbrokers = docbrokerClientBinding.m_defaultDocbrokerList;
+        for(ConnectionBroker broker : docbrokers ){
+            System.out.println(broker.getDocbrokerName() + " : " + broker.getDocbrokerPort());
+        }
+        IDfSessionManager sessionManager = SessionManagerHttpBinding.getSessionManager();
+        IDfSession session = null;
+        try {
+             session = sessionManager.getSession("");
+        }catch (Exception e){
+
+        }
+    }
 }

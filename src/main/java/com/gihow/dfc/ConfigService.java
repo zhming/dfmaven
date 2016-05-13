@@ -191,6 +191,8 @@ public class ConfigService
 			return configElement;
 		}
 
+
+
 		public String onLookupString(String strElementPath, Context context)
 		{
 			String strResult = null;
@@ -376,26 +378,20 @@ public class ConfigService
 
 	private static synchronized ConfigService getInstance()
 	{
-//		if (s_singleton != null)
-//			break MISSING_BLOCK_LABEL_69;
-//		if (s_intializedOnce)
-//		{
-//			refresh();
-//			break MISSING_BLOCK_LABEL_69;
-//		}
-//		if (s_bInitializing)
-//			throw new RuntimeException("Re-entrant call to getInstance()");
-//		s_bInitializing = true;
-//		s_singleton = new ConfigService(s_configReader);
-//		s_bInitializing = false;
-//		break MISSING_BLOCK_LABEL_65;
-//		Exception exception;
-//		exception;
-//		s_bInitializing = false;
-//		throw exception;
-//		s_intializedOnce = true;
-//		return s_singleton;
-        return null;
+		if (s_singleton != null)
+			return s_singleton;
+		if (s_intializedOnce)
+		{
+			refresh();
+            return s_singleton;
+		}
+		if (s_bInitializing)
+			throw new RuntimeException("Re-entrant call to getInstance()");
+		s_bInitializing = true;
+		s_singleton = new ConfigService(s_configReader);
+		s_bInitializing = false;
+		s_intializedOnce = true;
+		return s_singleton;
 	}
 
 	public static IConfigLookup getConfigLookup()
@@ -410,24 +406,19 @@ public class ConfigService
 
 	public static void refresh()
 	{
-//		if (!proceedWithRefresh())
-//			return;
-//		ConfigService _singleton = new ConfigService(s_configReader);
-//		synchronized (com/documentum/web/formext/config/ConfigService)
-//		{
-//			ArrayList refreshListeners = (ArrayList)s_listRefreshListeners.clone();
-//			s_singleton = _singleton;
-//			int nCount = refreshListeners.size();
-//			for (int i = 0; i < nCount; i++)
-//				((IConfigRefreshListener)refreshListeners.get(i)).onPostRefresh();
-//
-//		}
-//		s_isRefreshing = false;
-//		break MISSING_BLOCK_LABEL_100;
-//		Exception exception1;
-//		exception1;
-//		s_isRefreshing = false;
-//		throw exception1;
+		if (!proceedWithRefresh())
+			return;
+		ConfigService _singleton = new ConfigService(s_configReader);
+		synchronized (ConfigService.class)
+		{
+			ArrayList refreshListeners = (ArrayList)s_listRefreshListeners.clone();
+			s_singleton = _singleton;
+			int nCount = refreshListeners.size();
+			for (int i = 0; i < nCount; i++)
+				((IConfigRefreshListener)refreshListeners.get(i)).onPostRefresh();
+
+		}
+		s_isRefreshing = false;
 	}
 
 	private static synchronized boolean proceedWithRefresh()
@@ -716,6 +707,8 @@ public class ConfigService
 		return strResult;
 	}
 
+
+
 	public Boolean lookupBoolean(String strElementPath, Context context)
 	{
 		Boolean bResult = null;
@@ -813,11 +806,11 @@ public class ConfigService
 		m_listConfigFileInfo = new ArrayList(256);
 		s_progressiveSingleton = this;
 		m_configReader = configReader;
-		String strAppName = m_configReader.getAppName();
+		//String strAppName = m_configReader.getAppName();
 		m_primaryElementsByScope = new PrimaryElementsByScopeDictionary("scope-global", 4001);
 		m_primaryElementsByLocation = new PrimaryElementsByLocationDictionary(227);
-		initialiseApp(strAppName, null);
-		m_primaryElementsByScope.init(m_qualifiers);
+		//initialiseApp(strAppName, null);
+		//m_primaryElementsByScope.init(m_qualifiers);
 		if (Trace.CONFIGSERVICE)
 		{
 			m_primaryElementsByScope.trace();
@@ -1766,9 +1759,6 @@ public class ConfigService
 		final List tree = new ArrayList();
 		ContextualProcessor processor = new ContextualProcessor() {
 
-			 String val$strElementPath;
-			 List val$tree;
-			 IConfigElement val$data[];
 			final ConfigService this$0;
 
 			public void run()
@@ -1824,7 +1814,12 @@ public class ConfigService
 	}
 
 
-
+    public static void main(String[] args){
+        Context context = Context.getSessionContext();
+        IConfigLookup lookup = ConfigService.getConfigLookup();
+        String ss = lookup.lookupString("db.url", context);
+        System.out.println(ss);
+    }
 
 
 

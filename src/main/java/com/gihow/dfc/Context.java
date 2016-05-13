@@ -52,9 +52,16 @@ public final class Context
 		return context;
 	}
 
+
+    public static void main(String[] args){
+        Context context = Context.getSessionContext();
+        System.out.println(context.get("config"));
+        System.out.println(context.toString());
+
+    }
 	private static Context initRootContext()
 	{
-		return new Context("APP", null);
+		return new Context("conf", null);
 	}
 
 	public static Context getApplicationContext()
