@@ -25,6 +25,12 @@
 
 	<!-- bo config end -->
 
+    <!--listener-->
+    <listener>
+        <listener-class>com.gihow.dfc.NotificationManager</listener-class>
+    </listener>
+
+    <!--listener end-->
 	<filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
