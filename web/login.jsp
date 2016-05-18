@@ -12,7 +12,7 @@ To change this template use File | Settings | File Templates.
 <title>Struts2</title>
 	
 </head>
-<h3>FieldError in Struts 2 </h3>
+<h3>Documentum DFC</h3>
 <body bgcolor="white">
 	<s:form action="login.action">
                     <s:textfield name="username" placeholder="Username" label="Username" />
