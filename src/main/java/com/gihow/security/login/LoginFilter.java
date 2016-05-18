@@ -34,7 +34,6 @@ public class LoginFilter implements Filter {
             chain.doFilter(req, res);
         } else if (req.getSession(true).getAttribute(LOGIN_GA_USER) == null) {
             res.sendRedirect(contextPath + loginPage + "?redirectUri=" + servletPath);
-            
             return;
         } else {
             chain.doFilter(req, res);

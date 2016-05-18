@@ -30,7 +30,7 @@
 
 		<action name="login" class="com.gihow.security.login.Login">
 			<result name="success" >
-                hello.jsp
+                /module/main.jsp
 			</result>
 			<result name="input">
                 <!--/template/view/frontpage/login/login.v1m-->

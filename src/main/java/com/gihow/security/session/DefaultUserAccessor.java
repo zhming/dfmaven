@@ -27,8 +27,9 @@ public class DefaultUserAccessor implements UserAccessor, PersistenceAware {
 
 	public boolean authenticate(String username, String password) {
         try {
-            return Auth.authDfcSession(StaticValuesUtil.DOCBASE, username, password, "");
-        } catch (DfException e) {
+            //return Auth.authDfcSession(StaticValuesUtil.DOCBASE, username, password, "");
+            return Auth.authDfc(username, password);
+        } catch (Exception e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             return false;
         }
@@ -37,7 +38,6 @@ public class DefaultUserAccessor implements UserAccessor, PersistenceAware {
     //使用超级用户根据用户名获取用户实例
     public IDfUser getByUsername(String username) {
 		try {
-
             IDfUserService userService = new IDfUserServiceImpl();
 			return userService.getUserByUsername(username);
 		} catch (Exception e) {

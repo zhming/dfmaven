@@ -249,6 +249,50 @@
             <version>3.12.1.GA</version>
         </dependency>
 
+
+
+        <!--dfc-->
+        <dependency>
+            <groupId>dfc</groupId>
+            <artifactId>dfc</artifactId>
+            <version>7.2</version>
+        </dependency>
+
+        <!--dfc dependency-->
+
+        <dependency>
+            <groupId>com.rsa.certj</groupId>
+            <artifactId>com.rsa.certj</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rsa.cryptojcommon</groupId>
+            <artifactId>rsa-cryptojcommon</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rsa.jcmFIPS</groupId>
+            <artifactId>rsa-jcmFIPS</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+
+        <!--guava-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
+        </dependency>
+
+        <!--joda-time-->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.3</version>
+        </dependency>
+
+
+
         <!-- other dependencies -->
 
         <dependency>
@@ -256,11 +300,7 @@
             <groupId>junit</groupId>
             <version>4.12</version>
         </dependency>
-        <dependency>
-            <groupId>dfc</groupId>
-            <artifactId>dfc</artifactId>
-            <version>7.2</version>
-        </dependency>
+
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>

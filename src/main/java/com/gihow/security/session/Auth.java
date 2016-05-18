@@ -1,5 +1,8 @@
 package com.gihow.security.session;
 
+import com.documentum.com.DfClientX;
+import com.documentum.com.IDfClientX;
+import com.documentum.fc.client.IDfClient;
 import com.documentum.fc.client.IDfSession;
 import com.documentum.fc.client.IDfSessionManager;
 import com.documentum.fc.common.DfException;
@@ -7,6 +10,8 @@ import com.documentum.fc.common.DfLoginInfo;
 import com.documentum.fc.common.IDfLoginInfo;
 import com.gihow.dfc.Cache;
 import com.gihow.dfc.SessionManagerHttpBinding;
+import com.gihow.util.StaticValuesUtil;
+import org.joda.time.DateTime;
 
 import javax.servlet.http.HttpSession;
 
@@ -53,5 +58,34 @@ public class Auth {
                 sessionManager.release(session);
         }
         return isLoginSuccess;
+    }
+
+    public static boolean authDfc(String username, String password){
+        boolean isLogin = false;
+        DateTime starT = new DateTime();
+        IDfClientX clientX = new DfClientX();
+        IDfClient client = null;
+        IDfSessionManager sMgr = null;
+        IDfSession session = null;
+        try{
+            client = clientX.getLocalClient();
+            IDfLoginInfo loginInfo = clientX.getLoginInfo();
+            loginInfo.setUser(username);
+            loginInfo.setPassword(password);
+            System.out.println("消耗时间newSessionMananger： " + ((new DateTime()).getMillis() - starT.getMillis()));
+            sMgr = client.newSessionManager();
+            sMgr.setIdentity(StaticValuesUtil.DOCBASE, loginInfo);
+            session = sMgr.getSession(StaticValuesUtil.DOCBASE);
+            System.out.println("消耗时间getSession： " + ((new DateTime()).getMillis() - starT.getMillis()));
+            if(session != null) isLogin = true;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }if(session != null){
+            sMgr.release(session);
+        }
+        DateTime endT = new DateTime();
+        System.out.println("消耗时间authDfc： " + (endT.getMillis() - starT.getMillis()));
+        return isLogin;
     }
 }
