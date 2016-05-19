@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public interface UserAccessor {
-    boolean authenticate(String username, String password) throws DfException;
+    boolean authenticate(String username, String password) throws DfException, PasswordExpiredException;
 
     void signup(IDfUser user);
 

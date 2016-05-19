@@ -1,11 +1,7 @@
 package com.gihow.debug;
 
-import com.gihow.dfc.TrustedAuthenticatorUtils;
 import com.gihow.util.Base64;
 import org.junit.Test;
-
-import java.io.IOException;
-import java.security.GeneralSecurityException;
 
 /**
  * Created with IntelliJ IDEA.

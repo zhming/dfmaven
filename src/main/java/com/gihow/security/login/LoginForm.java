@@ -5,6 +5,8 @@ import com.documentum.fc.client.DfUser;
 import com.documentum.fc.client.IDfACL;
 import com.documentum.fc.client.IDfUser;
 import com.documentum.fc.common.DfException;
+import com.documentum.fc.common.DfId;
+import com.documentum.fc.common.IDfId;
 import com.gihow.DefaultAction;
 import com.gihow.security.session.UserAccessor;
 import com.gihow.security.session.UserAccessorAware;
@@ -29,9 +31,6 @@ public class LoginForm extends DefaultAction implements UserAccessorAware {
 	private String redirectUri;
 
 	public String execute() throws DfException {
-        System.out.println("LoginForm.............");
-        System.out.println("username: " + username);
-        System.out.println("password: " + password);
     	if(getRedirectUri()!=null&&!"".equalsIgnoreCase(getRedirectUri().trim())){
     		try {
 				getResponse().sendRedirect("../../");
@@ -41,10 +40,7 @@ public class LoginForm extends DefaultAction implements UserAccessorAware {
     	}
 		if (ActionContext.getContext().getSession().get(
 				LoginFilter.LOGIN_GA_USER) != null) { // sudah login
-
-//			getUser().setId(su.decodeBase64(ActionContext.getContext().getSession().get(LoginFilter.LOGIN_GA_USER).toString()));
-//			setUser(ua.getById(getUser().getId()));
-
+			setUser(ua.getById(su.decodeBase64(ActionContext.getContext().getSession().get(LoginFilter.LOGIN_GA_USER).toString())));
 			return "continue";
 		} else { // belum login
 			return "login";

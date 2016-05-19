@@ -34,7 +34,6 @@ public class HttpSessionCredentials implements SessionCredentials,
 			return null;
 		} else {
 			return userAccessor.getById(userId);
-			//return null;
 		}
 	}
 

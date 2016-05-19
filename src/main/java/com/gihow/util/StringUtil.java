@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Vector;
 
 // Referenced classes of package com.documentum.web.util:
-//			Trace
 
 public final class StringUtil
 {

@@ -37,13 +37,11 @@ public class NotificationManager implements ServletContextListener, HttpSessionL
         //To change body of implemented methods use File | Settings | File Templates.
         System.out.println("contextInitialized...................");
         //调用Listener接口实现类
-        new PreferenceRepository.ApplicationListener().notifyApplicationStart(servletContextEvent.getServletContext());
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         System.out.println("contextDestroyed...................");
         //To change body of implemented methods use File | Settings | File Templates.
-        new PreferenceRepository.ApplicationListener().notifyApplicationFinish(servletContextEvent.getServletContext());
     }
 }
