@@ -61,10 +61,10 @@ public class DfUserServiceImpl implements IDfUserService {
 
     public static void main(String[] args) throws Exception {
         IDfUserService userService = new DfUserServiceImpl();
-        IDfUser user = userService.getUserByUsername("test");
+        IDfUser user = userService.getUserByUsername("Perry");
         try {
             System.out.println(user.getObjectId() + " : " + user.getUserName());
-            System.out.println(user.getObjectId() + " : " + user.getUserName());
+            System.out.println(user.getObjectId() + " : " + user.getUserPassword());
         } catch (DfException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }

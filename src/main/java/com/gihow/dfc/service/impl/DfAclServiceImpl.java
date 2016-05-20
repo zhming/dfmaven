@@ -1,7 +1,12 @@
 package com.gihow.dfc.service.impl;
 
 import com.documentum.fc.client.IDfACL;
+import com.documentum.fc.client.IDfSession;
+import com.documentum.fc.client.IDfSessionManager;
+import com.documentum.fc.common.DfId;
 import com.gihow.dfc.service.IDfAclService;
+import com.gihow.dfc.sessionmananger.SessionManagerUtil;
+import com.gihow.util.StaticValuesUtil;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,6 +18,17 @@ import com.gihow.dfc.service.IDfAclService;
 public class DfAclServiceImpl implements IDfAclService {
     @Override
     public IDfACL getAclByName(String aclName) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        IDfACL acl = null;
+        IDfSessionManager sMgr = null;
+        IDfSession session = null;
+        try {
+            sMgr = SessionManagerUtil.createAdminSessionManager();
+            session = sMgr.getSession(StaticValuesUtil.DOCBASE);
+            acl = session.getACL("Administrator", aclName);
+        } catch (Exception e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+        return acl;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
