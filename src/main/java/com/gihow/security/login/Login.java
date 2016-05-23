@@ -4,17 +4,19 @@ import com.documentum.fc.common.DfException;
 import com.gihow.security.session.PasswordExpiredException;
 import com.gihow.security.session.UserAccessorAware;
 import com.opensymphony.xwork2.ActionContext;
+import org.apache.log4j.Logger;
 
 import java.io.UnsupportedEncodingException;
 
 public class Login extends LoginForm implements UserAccessorAware {
-    
+    Logger log = Logger.getLogger(Login.class);
     public String execute() throws DfException{
         try{
             if (ua.authenticate(getUsername(), getPassword())) {
                 setUser(ua.getByUsername(getUsername()));
                 if(getUser().getACLName().equalsIgnoreCase("default")){
-                    addFieldError("username", "Sorry, your account not activated yet.");
+                    addFieldError("username", "用户未激活.");
+                    log.debug("用户未激活");
                     return INPUT;
                 } else {
                     ActionContext.getContext().getSession().put(LoginFilter.LOGIN_GA_USER, su.encodeBase64(getUser().getObjectId().getId()));
@@ -25,7 +27,11 @@ public class Login extends LoginForm implements UserAccessorAware {
                 return INPUT;
             }
         }catch (PasswordExpiredException e){
+            log.debug(e.getMessage());
             addFieldError("username","密码已过期");
+            return INPUT;
+        }catch (Exception e){
+            log.debug(e.getMessage());
             return INPUT;
         }
 

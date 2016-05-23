@@ -2,28 +2,23 @@ package com.gihow;
 
 import com.documentum.fc.client.IDfACL;
 import com.documentum.fc.client.IDfUser;
-import com.gihow.persistence.PersistenceAware;
-import com.gihow.persistence.PersistenceManager;
 import com.gihow.security.session.SessionCredentials;
 import com.gihow.security.session.SessionCredentialsAware;
 import com.gihow.util.PropertyLooker;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.util.URLBean;
-import com.opensymphony.module.sitemesh.filter.PageFilter;
 
 import java.io.IOException;
 import java.util.Properties;
 
 
-public class DefaultAction extends ActionSupport implements PersistenceAware, SessionCredentialsAware {
-	protected PersistenceManager persistence;
+public class DefaultAction extends ActionSupport implements SessionCredentialsAware {
 	private SessionCredentials sessionCredentials;
 	private String currDescriptor;
 	
 	private static Properties properties = new Properties();
 	static {
-        System.out.println("DefaultAction...................");
 		try {
 			properties.load(PropertyLooker.getResourceAsStream("conf.properties"));
 		} catch (IOException e){
@@ -47,9 +42,6 @@ public class DefaultAction extends ActionSupport implements PersistenceAware, Se
 		return properties.getProperty(propertyName);
 	}
 	
-	public void setPersistenceManager(PersistenceManager persistenceManager) {
-		this.persistence = persistenceManager;
-	}
 	public void setSessionCredentials(SessionCredentials sessionCredentials) {
 		this.sessionCredentials = sessionCredentials;
 	}

@@ -20,15 +20,9 @@
 			</interceptor-stack>
 		</interceptors>
 		<default-interceptor-ref name="adminStack" />
-		<global-results>
-			<result name="notallowed" type="velocity">/errors/notallowed.vm
-			</result>
-		</global-results>
+
 		<action name="index">
 			<result type="redirect">/view/backend/user/index.action</result>
-		</action>
-		<action name="*">
-			<result type="velocity">/errors/notfound.vm</result>
 		</action>
 
 

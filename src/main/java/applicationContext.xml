@@ -2,40 +2,28 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-    <!--
-	<bean id="sessionFactory"
-		class="org.bo.persistence.hibernate.DefaultHibernateSessionFactory"
-		init-method="init" destroy-method="destroy" singleton="true">
-		<property name="sessionFactory" ref="mySessionFactory" />
-	</bean>
-
-	<bean id="persistenceManager"
-		class="org.bo.persistence.hibernate.HibernatePersistenceManager"
-		init-method="init" destroy-method="dispose" singleton="false">
-		<property name="hibernateSessionFactory" ref="sessionFactory" />
-	</bean>
-    -->
-    <bean id="persistenceManager"
-          class="com.gihow.persistence.PersistenceManagerImpl">
+    <bean id="userService" class="com.gihow.service.impl.DfUserServiceImpl">
     </bean>
-	<!-- Use this UserAccessor implementation to use authentication from database -->
+
 	<bean id="userAccessor" class="com.gihow.security.session.DefaultUserAccessor"
 		singleton="false">
-		<property name="persistenceManager">
-			<ref bean="persistenceManager" />
+		<property name="userService">
+			<ref bean="userService" />
 		</property>
 	</bean>
-	<!-- Use this UserAccessor implementation to use authentication from ldap -->
-<!-- <bean id="userAccessor" class="org.bo.security.ldap.LDAPUserAccessor" 
-		singleton="false"> <property name="ldapTemplate"><ref bean="ldapTemplate"/></property> 
-		<property name="persistenceManager"><ref bean="persistenceManager"/></property> 
-		</bean> -->
+
 	<bean id="sessionCredentials" class="com.gihow.security.session.HttpSessionCredentials"
 		singleton="false">
 		<property name="userAccessor">
 			<ref bean="userAccessor" />
 		</property>
 	</bean>
+
+    <!--验证码-->
+    <!--label: Gihow Documentum，domain: documentum.gihow.com-->
+    <!--Site key: 6Ld-mSATAAAAAAZ25LlT1SpQn2robN4qbjQ-F10z-->
+    <!--Secret key: 6Ld-mSATAAAAALxazYhyAYDzbP8Hxc0Y4Oo6TDI2-->
+
 	<bean id="reCaptcha" class="net.tanesha.recaptcha.ReCaptchaImpl">
 		<property name="privateKey" value="6LdtbAQAAAAAAKbQsKFqarVaqdrtHLykI2UjgyOx" />
 		<property name="publicKey" value="6LdtbAQAAAAAAH7YjLqYawtCgsLzncxb0gP50Het" />

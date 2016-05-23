@@ -13,8 +13,5 @@ public class TraceTest {
 
     @Test
     public void pringlnTest(){
-        Object obj = new String("aaa");
-        String msg = "Hello DfDebug";
-        Trace.println(obj, msg);
     }
 }

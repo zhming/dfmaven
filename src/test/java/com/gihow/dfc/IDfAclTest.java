@@ -2,10 +2,10 @@ package com.gihow.dfc;
 
 import com.documentum.fc.client.IDfACL;
 import com.documentum.fc.client.IDfUser;
-import com.gihow.dfc.service.IDfAclService;
-import com.gihow.dfc.service.IDfUserService;
-import com.gihow.dfc.service.impl.DfAclServiceImpl;
-import com.gihow.dfc.service.impl.DfUserServiceImpl;
+import com.gihow.service.IDfAclService;
+import com.gihow.service.IDfUserService;
+import com.gihow.service.impl.DfAclServiceImpl;
+import com.gihow.service.impl.DfUserServiceImpl;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;

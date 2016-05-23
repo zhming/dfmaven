@@ -1,10 +1,9 @@
-package com.gihow.dfc.service.impl;
+package com.gihow.service.impl;
 
 import com.documentum.fc.client.IDfACL;
 import com.documentum.fc.client.IDfSession;
 import com.documentum.fc.client.IDfSessionManager;
-import com.documentum.fc.common.DfId;
-import com.gihow.dfc.service.IDfAclService;
+import com.gihow.service.IDfAclService;
 import com.gihow.dfc.sessionmananger.SessionManagerUtil;
 import com.gihow.util.StaticValuesUtil;
 

@@ -291,6 +291,15 @@
             <version>2.9.3</version>
         </dependency>
 
+
+
+        <!--log4j-->
+                 <dependency>
+                     <groupId>log4j</groupId>
+                     <artifactId>log4j</artifactId>
+                     <version>1.2.5</version>
+                 </dependency>
+
         <!-- other dependencies -->
 
         <dependency>
@@ -299,11 +308,7 @@
             <version>4.12</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-1.2-api</artifactId>
-            <version>2.5</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.geronimo.bundles</groupId>
             <artifactId>aspectjrt</artifactId>

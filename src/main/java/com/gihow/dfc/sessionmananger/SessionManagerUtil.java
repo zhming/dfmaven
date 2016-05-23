@@ -7,6 +7,7 @@ import com.documentum.fc.client.IDfSession;
 import com.documentum.fc.client.IDfSessionManager;
 import com.documentum.fc.common.IDfLoginInfo;
 import com.gihow.util.StaticValuesUtil;
+import org.apache.log4j.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,33 +22,30 @@ public class SessionManagerUtil {
     private static IDfClientX clientX;
     private static IDfSessionManager sMgr;
     private IDfSession session;
+    private static Logger log = Logger.getLogger(SessionManagerUtil.class);
+
+    private SessionManagerUtil(){
+        super();
+    }
 
     public static IDfSessionManager createSessionManager(String user, String pass) throws Exception  {
-        //create a Client object
         clientX = new DfClientX();
         client = clientX.getLocalClient();
-        //create a Session Manager object
         sMgr = client.newSessionManager();
-        //create an IDfLoginInfo object named �loginInfoObj�
         IDfLoginInfo loginInfoObj = clientX.getLoginInfo();
         loginInfoObj.setUser(user);
         loginInfoObj.setPassword(pass);
-        //bind the Session Manager to the login info
         sMgr.setIdentity(StaticValuesUtil.DOCBASE, loginInfoObj);
         return sMgr;
     }
 
     public static IDfSessionManager createAdminSessionManager() throws Exception  {
-        //create a Client object
         clientX = new DfClientX();
         client = clientX.getLocalClient();
-        //create a Session Manager object
         sMgr = client.newSessionManager();
-        //create an IDfLoginInfo object named �loginInfoObj�
         IDfLoginInfo loginInfoObj = clientX.getLoginInfo();
         loginInfoObj.setUser(StaticValuesUtil.GLOBAL_USERNAME);
         loginInfoObj.setPassword(StaticValuesUtil.GLOBAL_PASSWORD);
-        //bind the Session Manager to the login info
         sMgr.setIdentity(StaticValuesUtil.DOCBASE, loginInfoObj);
         return sMgr;
     }

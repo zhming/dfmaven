@@ -1,12 +1,13 @@
-package com.gihow.dfc.service.impl;
+package com.gihow.service.impl;
 
 import com.documentum.fc.client.IDfSession;
 import com.documentum.fc.client.IDfSessionManager;
 import com.documentum.fc.client.IDfUser;
 import com.documentum.fc.common.DfException;
-import com.gihow.dfc.service.IDfUserService;
+import com.gihow.service.IDfUserService;
 import com.gihow.dfc.sessionmananger.SessionManagerUtil;
 import com.gihow.util.StaticValuesUtil;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
@@ -18,8 +19,9 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class DfUserServiceImpl implements IDfUserService {
-
+    private static Logger log = Logger.getLogger(DfUserServiceImpl.class);
     public IDfUser getUserByUsername(String username){
+        log.debug("username: " + username);
         IDfUser user = null;
         IDfSessionManager sMgr = null;
         IDfSession session = null;
@@ -28,7 +30,7 @@ public class DfUserServiceImpl implements IDfUserService {
             session = sMgr.getSession(StaticValuesUtil.DOCBASE);
             user = session.getUser(username);
         }catch (Exception e){
-            e.printStackTrace();
+            log.debug(e.getMessage());
         }finally {
             SessionManagerUtil.release(sMgr, session);
         }
@@ -45,28 +47,28 @@ public class DfUserServiceImpl implements IDfUserService {
             session = sMgr.getSession(StaticValuesUtil.DOCBASE);
             user = session.getUser(id);
         } catch (Exception e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            log.debug(e.getMessage());
             throw new RuntimeException("sessionMananger 异常： " + e.getMessage());
 
         }finally {
             SessionManagerUtil.release(sMgr, session);
         }
-        return user;  //To change body of implemented methods use File | Settings | File Templates.
+        return user;
     }
 
     @Override
     public List<IDfUser> getAllUsers() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 
     public static void main(String[] args) throws Exception {
         IDfUserService userService = new DfUserServiceImpl();
         IDfUser user = userService.getUserByUsername("Perry");
         try {
-            System.out.println(user.getObjectId() + " : " + user.getUserName());
-            System.out.println(user.getObjectId() + " : " + user.getUserPassword());
+            log.debug(user.getObjectId() + " : " + user.getUserName());
+            log.debug(user.getObjectId() + " : " + user.getUserPassword());
         } catch (DfException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            log.debug(e.getMessage());
         }
     }
 }

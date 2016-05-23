@@ -1,4 +1,4 @@
-package com.gihow.dfc.service;
+package com.gihow.service;
 
 import com.documentum.fc.client.IDfUser;
 
