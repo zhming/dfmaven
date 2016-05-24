@@ -20,6 +20,7 @@ public class Login extends LoginForm implements UserAccessorAware {
                     return INPUT;
                 } else {
                     ActionContext.getContext().getSession().put(LoginFilter.LOGIN_GA_USER, su.encodeBase64(getUser().getObjectId().getId()));
+                    log.debug("login.action: success!");
                     return SUCCESS;
                 }
             } else {

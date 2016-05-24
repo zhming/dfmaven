@@ -4,17 +4,17 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-	<package name="tree" extends="default" namespace="/backend">
+	<package name="tree" extends="default" namespace="/">
         <!--文件柜列表-->
 		<action name="yuitree" class="com.gihow.sitemanager.SiteTree">
 			<result name="success" type="redirect">
 				/module/main.jsp
 			</result>
-			<result name="error" type="velocity">/errors/404.jsp</result>
+			<result name="error" type="redirect">/errors/404.jsp</result>
 		</action>
 	</package>
 
-	<!--Security - Login namespace="/backend/user" -->
+	<!--Security -->
 	<package name="security" extends="default" namespace="/">
 		<action name="index" class="com.gihow.security.login.LoginForm">
 			<result name="login" type="redirect">
@@ -26,7 +26,7 @@
 			<result name="redirect" type="redirect">
 				../../${redirectUri}
 			</result>
-			<result name="error">/errors/notfound.vm</result>
+			<result name="error">/errors/404.jsp</result>
 		</action>
 
 		<action name="login" class="com.gihow.security.login.Login">

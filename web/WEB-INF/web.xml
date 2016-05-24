@@ -57,12 +57,12 @@
 		</init-param>
 		<init-param>
 			<param-name>siteSelection</param-name>
-			<param-value>/backend/user/site.action</param-value>
+			<param-value>site.action</param-value>
 		</init-param>
 
 		<init-param>
 			<param-name>loginAction</param-name>
-			<param-value>/backend/user/index.action</param-value>
+			<param-value>index.action</param-value>
 		</init-param>
 		<init-param>
 			<param-name>ignoreExtensions</param-name>
