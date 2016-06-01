@@ -300,6 +300,64 @@
                      <version>1.2.5</version>
                  </dependency>
 
+        <!--PDF Box-->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+
+        <!--POI-->
+        <!-- http://mvnrepository.com/artifact/org.apache.poi/poi -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
+            <version>3.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>ooxml-schemas</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>fr.opensagres.xdocreport</groupId>
+            <artifactId>org.apache.poi.xwpf.converter.core</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+        <!-- http://mvnrepository.com/artifact/org.apache.xmlbeans/xmlbeans -->
+        <dependency>
+            <groupId>org.apache.xmlbeans</groupId>
+            <artifactId>xmlbeans</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-examples</artifactId>
+            <version>3.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-excelant</artifactId>
+            <version>3.9</version>
+        </dependency>
+
+
+
+
+
         <!-- other dependencies -->
 
         <dependency>
@@ -356,6 +414,11 @@
             <artifactId>recaptcha4j</artifactId>
             <version>0.0.7</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.poi</groupId>-->
+            <!--<artifactId>poi</artifactId>-->
+            <!--<version>3.12</version>-->
+        <!--</dependency>-->
     </dependencies>
 
 
