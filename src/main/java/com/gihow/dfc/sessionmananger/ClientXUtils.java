@@ -6,6 +6,7 @@ import com.documentum.fc.client.IDfClient;
 import com.documentum.fc.client.IDfQuery;
 import com.documentum.fc.client.IDfSession;
 import com.documentum.fc.client.IDfSessionManager;
+import com.documentum.fc.client.search.IDfSearchService;
 import com.documentum.fc.common.DfException;
 import com.documentum.fc.common.IDfId;
 import com.documentum.fc.common.IDfList;
@@ -115,6 +116,11 @@ public final class ClientXUtils {
     public static IDfList getList() throws DfException {
         return new DfClientX().getList();
     }
+
+    public static IDfSearchService getSearchService(String userName, String password) throws DfException {
+        return new DfClientX().getLocalClient().newSearchService(getSessionManager(userName, password), StaticValuesUtil.DOCBASE);
+    }
+
 
 }
 

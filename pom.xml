@@ -275,6 +275,16 @@
             <artifactId>rsa-jcmFIPS</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>xtrim</groupId>
+            <artifactId>xtrim-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>xtrim</groupId>
+            <artifactId>xtrim-server</artifactId>
+            <version>1.0</version>
+        </dependency>
 
 
         <!--guava-->
