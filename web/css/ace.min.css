@@ -1,0 +1,87 @@
+/**
+Ace Admin Template CSS File
+*/
+
+
+#sidebar:before{content:"";display:block;width:200px;position:fixed;bottom:0;top:0;z-index:-1; background-color:#DBDCDF;}
+#sidebar{width:200px;position:absolute;margin-left:0;margin-top:10px;}
+body.navbar-fixed{padding-top:45px}
+#sidebar.fixed{position:fixed;z-index:14}
+
+#main-content{margin-left:200px; margin-right:0; margin-top:0; min-height:100%; padding:0}
+.nav-list{margin:0;padding:0;list-style:none}li [class^="icon-"],.nav-list li [class^="icon-"],li [class*=" icon-"],.nav-list li [class*=" icon-"]{width:auto}
+.nav-list>li>a,.nav-list .nav-header{margin:0}
+.nav-list>li{display:block;padding:0;margin:0;border:0;position:relative}
+.nav-list>li:first-child{border-top:0}
+.nav-list>li>a{display:block; height:42px; line-height:22px; overflow:hidden; padding:0 16px 0 20px; color:#333; text-shadow:none!important; font-size:15px; text-decoration:none; background-color:transparent;}
+.nav-list>li>a>[class*="icon-"]:first-child{display:inline-block;vertical-align:middle;min-width:30px;text-align:center;font-size:18px;font-weight:normal}
+.nav-list>li>a:focus{background-color:#DBDCDF; color:#333;}
+.nav-list>li>a:hover{background-color:#DBDCDF; color:#005287;}
+.nav-list>li>a:hover:before{display:block;content:"";position:absolute;top:-1px;bottom:0;left:0;width:3px;max-width:3px;overflow:hidden;background-color:#005287}
+.nav-list>li.active>a:hover:before{display:none}
+.menu-min .nav-list>li>a:hover:before{width:2px;max-width:2px}
+.nav-list>li.separator{height:3px;background-color:#62597f;position:static;margin:1px 0;box-shadow:none}
+.nav-list>li.active{background-color:#FFF}
+.nav-list>li.open>a{background-color:#DBDCDF; color:#005287}
+.nav-list>li.open>a:focus{background-color:#DBDCDF; color:#005287}
+.nav-list>li.active>a,.nav-list>li.active>a:hover,.nav-list>li.active>a:focus{background-color:#FFF;color:#005287;font-weight:bold;font-size:13px}
+.nav-list>li.active>a>[class*="icon-"]{font-weight:normal}
+.nav-list>li.active>a:after,.nav-list>li.active.open>.submenu>li.active>a:after{display:inline-block;content:"";position:absolute!important;right:0;top:4px;border:8px solid transparent;border-width:14px 10px;border-right-color:#0b6cbc}
+.nav-list>li.active>a.dropdown-toggle:after{border-width:12px 7px;top:6px}
+.nav-list>li.active.open>a:after{display:none}
+.nav-list>li.active.open>.submenu>li.active>a:after{top:2px}
+.nav-list>li.active:after{display:inline-block;content:"";position:absolute;right:-2px;top:-1px;bottom:0;border-right:2px solid #0b6cbc}
+.nav-list>li>a>.arrow{display:inline-block;width:14px!important;height:14px;line-height:14px;text-shadow:none;font-size:18px;position:absolute;right:10px;top:11px;padding:0;color:#666}
+.nav-list>li>a:hover>.arrow,.nav-list>li.active>a>.arrow,.nav-list>li.open>a>.arrow{color:#1963aa}
+.nav-list>.active>ul.submenu{display:block}
+.nav-list>li.open{border-bottom-color:#e5e5e5}
+
+.nav-list>li>.submenu{display:none;list-style:none;margin:0;padding:0;position:relative;background-color:#CFD1D5; border-left:3px solid #C4C7CC; border-top:1px solid #C4C7CC; border-bottom:1px solid #C4C7CC;}
+.nav-list>li>.submenu>li{margin-left:0;position:relative}
+.nav-list>li>.submenu>li>a{display:block;color:#777;padding:7px 0 8px 32px;margin:0;}
+.nav-list>li>.submenu>li>a:focus{text-decoration:none}
+.nav-list>li>.submenu>li:last-child>a{border-bottom:0}
+.nav-list>li>.submenu>li>a:hover{text-decoration:none;color:#4b88b7}
+.nav-list>li>.submenu>li.active>a{color:#0b6cbc}
+.nav-list>li>.submenu>li{position:relative}
+.nav-list>li>.submenu>li:before{display:inline-block;content:"";width:9px;position:absolute;left:21px;top:17px;}
+.nav-list>li>.submenu>li>a{padding-left:37px;position:relative}
+.nav-list>li>.submenu>li:after{content:"";display:inline-block;position:absolute;top:0;bottom:0;left:18px;width:0;}
+.nav-list>li>.submenu>li>a>[class*="icon-"]:first-child{display:none;font-size:12px;font-weight:normal;width:22px;height:16px;line-height:16px;text-align:center;position:absolute;left:8px;top:10px;z-index:1;background-color:#FFF}
+.nav-list>li>.submenu>.active>a>[class*="icon-"]:first-child,.nav-list>li>.submenu>:hover>a>[class*="icon-"]:first-child{display:inline-block}
+.nav-list>li>.submenu>.active>a>[class*="icon-"]:first-child{color:#c86139}
+
+#sidebar-collapse{background-color:#DBDCDF; text-align:center; padding:3px 0; position:relative; margin:10px 0;}
+#sidebar-collapse>[class*="icon-"]{display:inline-block;cursor:pointer;font-size:14px;color:#005287;border:4px solid #005287;padding:0 8px;line-height:18px;border-radius:16px;background-color:#005287;position:relative}
+#sidebar-collapse:before{content:"";display:inline-block;height:0;border-top:1px solid #e1e1e1;position:absolute;left:15px;right:15px;top:13px}
+#sidebar.menu-min:before{width:42px}
+#sidebar.menu-min{width:42px}
+#sidebar.menu-min+#main-content{margin-left:43px}
+.menu-min .nav-list>li>a{position:relative}
+.menu-min .nav-list>li>a>span{display:none;position:absolute;left:41px;top:-2px;width:158px;height:39px;line-height:38px;background-color:#f5f5f5;z-index:121;box-shadow:2px 1px 2px 0 rgba(0,0,0,0.2);border:1px solid #CCC;padding-left:12px}
+.menu-min .nav-list>li:hover>a{color:#1963aa}
+.menu-min .nav-list>li>a.dropdown-toggle>span{box-shadow:none;border:0;top:-1px;left:42px;width:163px;}
+.menu-min .nav-list>li.active>a>span{border-left-color:#1963aa}
+.menu-min .nav-list>li.open>a{background-color:#fafafa;color:#585858}
+.menu-min .nav-list>li.open.active>a{background-color:#FFF}
+.menu-min .nav-list>li.open:hover>a{color:#1963aa}
+.menu-min .nav-list>li.active>a:after{border-width:10px 6px;top:8px}
+.menu-min .nav-list>li.active.open>a:after{display:block}
+.menu-min .nav-list>li.active.open>.submenu>li.active>a:after{display:none}
+.menu-min .nav-list>li:hover>a>span{display:block}
+.menu-min .nav-list>li>a>.arrow{display:none}
+.menu-min #sidebar-shortcuts{position:relative}
+.menu-min #sidebar-shortcuts-mini{display:block}
+.menu-min #sidebar-shortcuts-large{display:none;position:absolute;left:42px;top:-1px;width:175px;z-index:20;background-color:#FFF;box-shadow:2px 1px 2px 0 rgba(0,0,0,0.2);border:1px solid #CCC;padding:0 2px 3px}
+.menu-min #sidebar-shortcuts:hover #sidebar-shortcuts-large{display:block}
+.menu-min #sidebar-collapse:before{left:5px;right:5px}
+.menu-min #sidebar-collapse>[class*="icon-"]{font-size:13px;padding:0 4px;line-height:15px;border-width:3px;border-color:#005287}
+.menu-min .nav-list>li>ul.submenu{background:#FFF;position:absolute;z-index:120;left:41px;top:-3px;width:175px;border:1px solid #CCC;box-shadow:2px 1px 2px 0 rgba(0,0,0,0.2);padding-top:40px;padding-bottom:2px;display:none!important}
+.menu-min .nav-list>li:hover>ul.submenu{display:block!important}
+.menu-min .nav-list>li.active>ul.submenu{border-left-color:#1963aa}
+.menu-min .nav-list>li>ul.submenu>li:before,.menu-min .nav-list>li>ul.submenu>li:after{display:none}
+.menu-min .nav-list>li>ul.submenu>li>a{border-left:none;margin-left:0;padding-left:24px}
+.menu-min .nav-list>li>.submenu>li>a>[class*="icon-"]:first-child{width:16px}
+.menu-min .nav-list>li>.submenu>.active>a>[class*="icon-"]:first-child,.menu-min .nav-list>li>.submenu>:hover>a>[class*="icon-"]:first-child{left:7px}
+
+
