@@ -1,6 +1,7 @@
 package com.gihow.dfc;
 
 import com.documentum.fc.client.*;
+import com.documentum.fc.common.DfException;
 import com.documentum.fc.common.IDfLoginInfo;
 import com.gihow.dfc.sessionmananger.ClientXUtils;
 import com.gihow.service.IDfAclService;
@@ -23,11 +24,12 @@ import static junit.framework.Assert.fail;
  */
 public class IDfAclTest {
     private Logger log = Logger.getLogger(IDfAclTest.class);
+    @Test
     public void getAclNameByUsernameTest(){
         IDfUserService userService = new DfUserServiceImpl();
         IDfAclService aclService = new DfAclServiceImpl();
         try {
-            IDfUser user = userService.getUserByUsername("Administrator");
+            IDfUser user = userService.getUserByUsername("test1");
             String aclName = user.getACLName();
             assertEquals("dm_4501e25680000101", aclName);
             String aclDomain = user.getACLDomain();
@@ -49,10 +51,10 @@ public class IDfAclTest {
         IDfSession session = null;
         try {
             String dql = "select * from dm_sysobject(all)" +
-                    "where acl_name ='dm_4501e25680000101' and acl_domain = 'Administrator'" +
-                    " and r_object_type='dm_folder'";
+                    "where acl_name ='dm_4501e25680001d00' and acl_domain = 'Administrator'" +
+                    " and r_object_type='dm_cabinet'";
             sessionManager = ClientXUtils.getSessionManager();
-            IDfLoginInfo loginInfo = ClientXUtils.getLoginInfo("Administrator", "gihow1qaz");
+            IDfLoginInfo loginInfo = ClientXUtils.getLoginInfo("test1", "test");
             sessionManager.setIdentity(StaticValuesUtil.DOCBASE, loginInfo);
             session = sessionManager.getSession(StaticValuesUtil.DOCBASE);
             IDfQuery query = ClientXUtils.getQuery(dql);
@@ -60,12 +62,41 @@ public class IDfAclTest {
             while (collection.next()) {
                 IDfTypedObject typedObject = collection.getTypedObject();
                 log.debug("object_format | " + typedObject);
+                log.debug("object_name | " + typedObject.getString("object_name"));
+                log.debug("r_object_id | " + typedObject.getString("r_object_id"));
+                log.debug("owner_name | " + typedObject.getString("owner_name"));
+                log.debug("owner_permit | " + typedObject.getInt("owner_permit"));
+                log.debug("group_permit | " + typedObject.getInt("group_permit"));
+                log.debug("world_permit | " + typedObject.getInt("world_permit"));
+                log.debug("acl_name | " + typedObject.getString("acl_name"));
+                log.debug("r_object_type | " + typedObject.getString("r_object_type"));
+                log.debug("r_creation_date | " + typedObject.getString("r_creation_date"));
+                log.debug("r_modify_date | " + typedObject.getString("r_modify_date"));
             }
             collection.close();
+            log.debug("sql | " + getSqlString(session));
         }catch (Exception e){
             e.printStackTrace();
             fail();
+        }finally {
+            sessionManager.release(session);
         }
+
+    }
+
+    private String getSqlString(IDfSession session){
+        String sqlResult = null;
+        try {
+            IDfCollection collection = session.apply(null, "GET_LAST_SQL", null, null, null);
+            if(collection.next()){
+                sqlResult = collection.getString("result");
+            }
+            collection.close();
+        } catch (DfException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+        return sqlResult;
 
     }
 }
