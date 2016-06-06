@@ -16,14 +16,14 @@ import com.gihow.util.StaticValuesUtil;
  */
 public class DfAclServiceImpl implements IDfAclService {
     @Override
-    public IDfACL getAclByName(String aclName) {
+    public IDfACL getAclByName(String domain, String aclName) {
         IDfACL acl = null;
         IDfSessionManager sMgr = null;
         IDfSession session = null;
         try {
             sMgr = SessionManagerUtil.createAdminSessionManager();
             session = sMgr.getSession(StaticValuesUtil.DOCBASE);
-            acl = session.getACL("Administrator", aclName);
+            acl = session.getACL(domain, aclName);
         } catch (Exception e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }

@@ -4,6 +4,7 @@ import com.documentum.fc.client.*;
 import com.documentum.fc.common.DfException;
 import com.documentum.fc.common.IDfLoginInfo;
 import com.gihow.dfc.sessionmananger.ClientXUtils;
+import com.gihow.dfc.sessionmananger.SessionManagerUtil;
 import com.gihow.service.IDfAclService;
 import com.gihow.service.IDfUserService;
 import com.gihow.service.impl.DfAclServiceImpl;
@@ -31,15 +32,16 @@ public class IDfAclTest {
         try {
             IDfUser user = userService.getUserByUsername("test1");
             String aclName = user.getACLName();
-            assertEquals("dm_4501e25680000101", aclName);
+            assertEquals("dm_4501e25680001d00", aclName);
             String aclDomain = user.getACLDomain();
-            IDfACL dfACL = aclService.getAclByName(aclName);
+            IDfACL dfACL = aclService.getAclByName(aclDomain, aclName);
             System.out.println("dfAcl_NAME: " + dfACL.getObjectName());
             System.out.println("dfAcl_PERMISSIONS: " + dfACL.getPermissions());
             System.out.println("dfAcl_ID: " + dfACL.getObjectId().getId());
             System.out.println("dfAcl_domain: " + dfACL.getDomain());
         } catch (Exception e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            fail();
         }
 
     }
@@ -74,7 +76,7 @@ public class IDfAclTest {
                 log.debug("r_modify_date | " + typedObject.getString("r_modify_date"));
             }
             collection.close();
-            log.debug("sql | " + getSqlString(session));
+            log.debug("sql | " + SessionManagerUtil.getSqlString(session));
         }catch (Exception e){
             e.printStackTrace();
             fail();
@@ -84,19 +86,43 @@ public class IDfAclTest {
 
     }
 
-    private String getSqlString(IDfSession session){
-        String sqlResult = null;
+    @Test
+    public void getDocumentsByDqlTest(){
+
+        IDfSessionManager sessionManager = null;
+        IDfSession session = null;
         try {
-            IDfCollection collection = session.apply(null, "GET_LAST_SQL", null, null, null);
-            if(collection.next()){
-                sqlResult = collection.getString("result");
+            String dql = "select * from dm_document where folder ('/Alibaba', descend)";
+            sessionManager = ClientXUtils.getSessionManager();
+            IDfLoginInfo loginInfo = ClientXUtils.getLoginInfo("Administrator", "gihow1qaz");
+            sessionManager.setIdentity(StaticValuesUtil.DOCBASE, loginInfo);
+            session = sessionManager.getSession(StaticValuesUtil.DOCBASE);
+            IDfQuery query = ClientXUtils.getQuery(dql);
+            IDfCollection collection = query.execute(session, DfQuery.DF_READ_QUERY);
+            while (collection.next()) {
+                IDfTypedObject typedObject = collection.getTypedObject();
+                log.debug("object_format | " + typedObject);
+                log.debug("object_name | " + typedObject.getString("object_name"));
+                log.debug("r_object_id | " + typedObject.getString("r_object_id"));
+                log.debug("owner_name | " + typedObject.getString("owner_name"));
+                log.debug("owner_permit | " + typedObject.getInt("owner_permit"));
+                log.debug("group_permit | " + typedObject.getInt("group_permit"));
+                log.debug("world_permit | " + typedObject.getInt("world_permit"));
+                log.debug("acl_name | " + typedObject.getString("acl_name"));
+                log.debug("r_object_type | " + typedObject.getString("r_object_type"));
+                log.debug("r_creation_date | " + typedObject.getString("r_creation_date"));
+                log.debug("r_modify_date | " + typedObject.getString("r_modify_date"));
             }
             collection.close();
-        } catch (DfException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            log.debug("sql | " + SessionManagerUtil.getSqlString(session));
+        }catch (Exception e){
+            e.printStackTrace();
+            fail();
+        }finally {
+            sessionManager.release(session);
         }
 
-        return sqlResult;
-
     }
+
+
 }

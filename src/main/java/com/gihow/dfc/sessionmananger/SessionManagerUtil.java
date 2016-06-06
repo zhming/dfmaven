@@ -3,8 +3,10 @@ package com.gihow.dfc.sessionmananger;
 import com.documentum.com.DfClientX;
 import com.documentum.com.IDfClientX;
 import com.documentum.fc.client.IDfClient;
+import com.documentum.fc.client.IDfCollection;
 import com.documentum.fc.client.IDfSession;
 import com.documentum.fc.client.IDfSessionManager;
+import com.documentum.fc.common.DfException;
 import com.documentum.fc.common.IDfLoginInfo;
 import com.gihow.util.StaticValuesUtil;
 import org.apache.log4j.Logger;
@@ -28,6 +30,13 @@ public class SessionManagerUtil {
         super();
     }
 
+    /**
+     * 通过用户名、密码获取sessionmanager
+     * @param user
+     * @param pass
+     * @return
+     * @throws Exception
+     */
     public static IDfSessionManager createSessionManager(String user, String pass) throws Exception  {
         clientX = new DfClientX();
         client = clientX.getLocalClient();
@@ -39,6 +48,12 @@ public class SessionManagerUtil {
         return sMgr;
     }
 
+    /**
+     * 直接获取一个超级用户权限的sessionmanager
+     *
+     * @return
+     * @throws Exception
+     */
     public static IDfSessionManager createAdminSessionManager() throws Exception  {
         clientX = new DfClientX();
         client = clientX.getLocalClient();
@@ -54,6 +69,29 @@ public class SessionManagerUtil {
         if(sMgr != null && session != null){
             sMgr.release(session);
         }
+    }
+
+
+
+    /**
+     * 显示session最后一次执行的sql语句
+     * @param session
+     * @return
+     */
+    public static String getSqlString(IDfSession session){
+        String sqlResult = null;
+        try {
+            IDfCollection collection = session.apply(null, "GET_LAST_SQL", null, null, null);
+            if(collection.next()){
+                sqlResult = collection.getString("result");
+            }
+            collection.close();
+        } catch (DfException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+        return sqlResult;
+
     }
 
 }

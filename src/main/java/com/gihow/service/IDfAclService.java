@@ -10,5 +10,5 @@ import com.documentum.fc.client.IDfACL;
  * To change this template use File | Settings | File Templates.
  */
 public interface IDfAclService {
-    public IDfACL getAclByName(String aclName);
+    public IDfACL getAclByName(String domain, String aclName);
 }
