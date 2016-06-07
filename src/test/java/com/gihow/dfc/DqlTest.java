@@ -1,7 +1,6 @@
 package com.gihow.dfc;
 
 import com.documentum.fc.client.*;
-import com.documentum.fc.common.DfException;
 import com.documentum.fc.common.IDfLoginInfo;
 import com.gihow.dfc.sessionmananger.ClientXUtils;
 import com.gihow.util.StaticValuesUtil;

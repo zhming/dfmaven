@@ -4,13 +4,10 @@ import com.documentum.fc.client.IDfEnumeration;
 import com.documentum.fc.client.search.*;
 import com.documentum.fc.client.search.impl.definition.metadata.DfSearchSource;
 import com.documentum.fc.common.DfException;
-import com.documentum.fc.common.IDfValue;
 import com.gihow.dfc.sessionmananger.ClientXUtils;
 import com.gihow.util.StaticValuesUtil;
 import org.apache.log4j.Logger;
 import org.junit.Test;
-
-import java.util.Iterator;
 
 /**
  * Created with IntelliJ IDEA.
