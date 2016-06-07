@@ -1,0 +1,132 @@
+#modalSmall
+{
+    background: url("../images/modalpage_bg.gif") repeat-x #c3c5c7 !important;
+    padding: 0;
+    margin: 0;
+    top:0px;
+    bottom:0px;
+    width: 100%;
+    text-align: center
+}
+
+body, td, p, th, ol, ul, li, input, select, textarea {
+    font-family: "Trebuchet MS", Verdana, GillSans, Arial;
+    color: #333;
+    font-size: 11px;
+}
+
+
+#mainPaneset {
+    background: #2B5386;
+    border: 1px solid;
+    border-color: #383732 #36485D;
+}
+
+
+#modalSmall #mainPaneset {
+    position: relative;
+    top: 0px;
+    right: 0px;
+    margin: 0 auto;
+    width: 400px;
+    text-align: left;
+}
+
+#modalSmall .dialogTitle {
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    display: block;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+#scrollingcontent {
+    border: 1px solid #a5acb2;
+    border-top: none;
+    background: url("../images/contentsheet_bg.gif") 100% 100% no-repeat #fff;
+    _text-align: center;
+}
+
+#scrollingcontent .content, #scrollingcontent .innerContent {
+    width: 85%;
+    margin: 0 auto;
+    text-align: left;
+    padding: 20px 0;
+}
+
+
+#modalSmall #logo {
+    text-align: center;
+    margin: 0 0 10px 0;
+    display: block;
+    position: relative;
+    color: #333;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.defaultLabelStyle {
+    font-family: "Trebuchet MS", Verdana, GillSans, Arial;
+    color: #333;
+    text-align: inherit;
+}
+
+#modalSmall .dialogTitleVersion {
+    color: #bbb;
+}
+
+
+.fieldlabel {
+    font-family: "Trebuchet MS", Verdana, GillSans, Arial;
+    color: #333;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    height: 30px;
+}
+
+.errField {
+    font-family: "Trebuchet MS", Verdana, GillSans, Arial;
+    color: #ff0b2f;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    height: 30px;
+}
+
+.rightAlignment {
+    text-align: right;
+}
+
+.defaultcolumnspacer {
+    width: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+.rightAlignment {
+    text-align: right;
+}
+
+.modalSmallButtonBar {
+    padding-bottom: 20px;
+    margin: 10px 0;
+}
+
+
+.helpButtonSection {
+    float: left;
+    display: inline;
+}
+
+
+.rightButtonSection {
+    float: right;
+}
+
+
+
+
+
