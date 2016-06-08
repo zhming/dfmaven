@@ -255,7 +255,7 @@
         <dependency>
             <groupId>dfc</groupId>
             <artifactId>dfc</artifactId>
-            <version>7.2</version>
+            <version>1.0</version>
         </dependency>
 
         <!--dfc dependency-->
