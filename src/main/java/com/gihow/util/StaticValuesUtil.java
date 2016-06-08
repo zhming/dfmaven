@@ -12,4 +12,6 @@ public class StaticValuesUtil {
     public static String GLOBAL_USERNAME = "Administrator";
     public static String GLOBAL_PASSWORD = "gihow1qaz";
 
+    public static Long CACHE_SIZE = 100000L;
+
 }

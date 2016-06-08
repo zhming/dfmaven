@@ -18,5 +18,6 @@ public class StringTest {
         log.debug(String.format("Hello, %s", "world!"));
         log.debug(String.format("Hello, %s, %s", "world!", "welcome"));
         log.debug(String.format("Hello, %s, %s, %s", "world!", "welcome", "ok"));
+        log.debug(String.format("Hello, %s, %s, %f, %d", "world!", "welcome",10.1, 9));
     }
 }
