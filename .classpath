@@ -58,7 +58,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: dom4j:dom4j:1.1"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: oro:oro:2.0.8"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: sslext:sslext:1.2-0"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: dfc:dfc:1.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: dfc:dfc:7.2"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.rsa.certj:com.rsa.certj:1.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.rsa.cryptojcommon:rsa-cryptojcommon:1.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.rsa.jcmFIPS:rsa-jcmFIPS:1.0"/>

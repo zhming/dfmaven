@@ -61,7 +61,6 @@
 		<level name="Maven: dom4j:dom4j:1.1" value="project"/>
 		<level name="Maven: oro:oro:2.0.8" value="project"/>
 		<level name="Maven: sslext:sslext:1.2-0" value="project"/>
-		<level name="Maven: dfc:dfc:1.0" value="project"/>
 		<level name="Maven: com.rsa.certj:com.rsa.certj:1.0" value="project"/>
 		<level name="Maven: com.rsa.cryptojcommon:rsa-cryptojcommon:1.0" value="project"/>
 		<level name="Maven: com.rsa.jcmFIPS:rsa-jcmFIPS:1.0" value="project"/>
