@@ -2,6 +2,10 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
+    <!--init Cache-->
+    <bean id="cacheManager" class="com.gihow.cache.CacheBeanPostProcessor" />
+
+
     <bean id="userService" class="com.gihow.service.impl.DfUserServiceImpl">
     </bean>
 

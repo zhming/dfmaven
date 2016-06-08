@@ -38,13 +38,6 @@ public class SearchServiceTest {
            IDfQueryManager queryManager =  searchService.newQueryMgr();
            IDfQueryBuilder query = queryManager.newQueryBuilder("dm_document");
            IDfExpressionSet root = query.getRootExpressionSet();
-//           root.addSimpleAttrExpression(
-//                   "object_name",
-//                   IDfValue.DF_STRING,
-//                   IDfSimpleAttrExpression.SEARCH_OP_CONTAINS,
-//                   true /* isCaseSensitive */,
-//                   false /* isRepeated */,
-//                   "test");
 
            IDfQueryProcessor processor =
                    searchService.newQueryProcessor(query, true /* noDuplicates */);

@@ -7,6 +7,8 @@ import com.google.common.cache.LoadingCache;
 import org.junit.Test;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,6 +18,8 @@ import java.util.concurrent.Callable;
  * To change this template use File | Settings | File Templates.
  */
 public class LoadingCacheTest {
+    private boolean isCreate = false;
+
 
     @Test
     public void TestLoadingCache() throws Exception{
@@ -57,5 +61,39 @@ public class LoadingCacheTest {
             }
         });
         System.out.println("peida value : " + resultVal);
+    }
+
+    @Test
+    public void loadingCache1Test() throws ExecutionException {
+        LoadingCache<String, String> loadingCache = CacheBuilder.newBuilder()
+                .maximumSize(100000)
+                .expireAfterWrite(10, TimeUnit.HOURS)
+                .removalListener(new MyListener())
+                .build(
+                        new CacheLoader<String, String>() {
+                            @Override
+                            public String load(String key) throws Exception {
+                                return createExpensiveGraph(key);
+                            }
+                        }
+                );
+
+        try {
+            System.out.println(loadingCache.get("world"));
+            loadingCache.invalidate("world");
+            System.out.println(loadingCache.get("world"));
+        } catch (Exception e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+
+        }
+    }
+
+
+    private String createExpensiveGraph(String key){
+        if(key.equals("world") && isCreate == false){
+            isCreate = true;
+            return "Hello, " + key;
+        }
+        return null;
     }
 }
