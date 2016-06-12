@@ -9,7 +9,7 @@
 		<interceptors>
 			<!-- interceptor name="hibernate" class="org.hibernate.admin.interceptor.HibernateInterceptor"/> -->
 			<interceptor name="interceptor-default"
-				class="com.gihow.interceptors.DefaultInterceptor"></interceptor>
+				class="com.ecm.interceptors.DefaultInterceptor"></interceptor>
 			<!-- Basic stack -->
 			<interceptor-stack name="adminStack">
 				<interceptor-ref name="timer" />

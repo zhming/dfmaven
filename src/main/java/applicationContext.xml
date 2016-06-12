@@ -3,20 +3,20 @@
 
 <beans>
     <!--init Cache-->
-    <bean id="cacheManager" class="com.gihow.cache.CacheBeanPostProcessor" />
+    <bean id="cacheManager" class="com.ecm.cache.CacheBeanPostProcessor" />
 
 
-    <bean id="userService" class="com.gihow.service.impl.DfUserServiceImpl">
+    <bean id="userService" class="com.ecm.service.impl.DfUserServiceImpl">
     </bean>
 
-	<bean id="userAccessor" class="com.gihow.security.session.DefaultUserAccessor"
+	<bean id="userAccessor" class="com.ecm.security.session.DefaultUserAccessor"
 		singleton="false">
 		<property name="userService">
 			<ref bean="userService" />
 		</property>
 	</bean>
 
-	<bean id="sessionCredentials" class="com.gihow.security.session.HttpSessionCredentials"
+	<bean id="sessionCredentials" class="com.ecm.security.session.HttpSessionCredentials"
 		singleton="false">
 		<property name="userAccessor">
 			<ref bean="userAccessor" />
@@ -24,7 +24,7 @@
 	</bean>
 
     <!--验证码-->
-    <!--label: Gihow Documentum，domain: documentum.gihow.com-->
+    <!--label: Gihow Documentum，domain: documentum.ecm.com-->
     <!--Site key: 6Ld-mSATAAAAAAZ25LlT1SpQn2robN4qbjQ-F10z-->
     <!--Secret key: 6Ld-mSATAAAAALxazYhyAYDzbP8Hxc0Y4Oo6TDI2-->
 

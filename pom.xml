@@ -253,7 +253,7 @@
 
         <!--dfc-->
         <dependency>
-            <groupId>dfc</groupId>
+            <groupId>com.dfc</groupId>
             <artifactId>dfc</artifactId>
             <version>7.2</version>
         </dependency>
@@ -261,27 +261,27 @@
         <!--dfc dependency-->
 
         <dependency>
-            <groupId>com.rsa.certj</groupId>
-            <artifactId>com.rsa.certj</artifactId>
+            <groupId>com.rsa</groupId>
+            <artifactId>rsa-certj</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.rsa.cryptojcommon</groupId>
+            <groupId>com.rsa</groupId>
             <artifactId>rsa-cryptojcommon</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.rsa.jcmFIPS</groupId>
+            <groupId>com.rsa</groupId>
             <artifactId>rsa-jcmFIPS</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>xtrim</groupId>
+            <groupId>com.xtrim</groupId>
             <artifactId>xtrim-api</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>xtrim</groupId>
+            <groupId>com.xtrim</groupId>
             <artifactId>xtrim-server</artifactId>
             <version>1.0</version>
         </dependency>
